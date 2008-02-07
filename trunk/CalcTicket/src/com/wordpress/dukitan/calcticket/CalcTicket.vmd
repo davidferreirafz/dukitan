@@ -410,7 +410,7 @@
                 <Component componentID="131" typeID="Cjavax.microedition.lcdui.List">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VformList"/>
                     <Property name="lazyInit" typeID="Pboolean" value="Vfalse"/>
-                    <Property name="commands" typeID="1C#CommandEventSource" value="A5:4_R1324_R2054_R1364_R2184_R137"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A5:4_R1324_R2054_R1364_R1374_R218"/>
                     <Property name="title" typeID="Pjava.lang.String" value="VLista de Compras"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="listType" typeID="Pint" value="V3"/>
@@ -567,8 +567,8 @@
                 <Component componentID="70" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VremoverCommand"/>
                     <Property name="label" typeID="Pjava.lang.String" value="VRemover"/>
-                    <Property name="type" typeID="Pint" value="V4"/>
-                    <Property name="priority" typeID="Pint" value="V1"/>
+                    <Property name="type" typeID="Pint" value="V8"/>
+                    <Property name="priority" typeID="Pint" value="V2"/>
                 </Component>
                 <Component componentID="65" typeID="C#SplashScreenDismissCommand">
                     <Property name="label" typeID="Pjava.lang.String" value="VDismiss"/>
@@ -579,7 +579,7 @@
                 <Component componentID="78" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="ValterarCommand"/>
                     <Property name="label" typeID="Pjava.lang.String" value="VAlterar"/>
-                    <Property name="type" typeID="Pint" value="V4"/>
+                    <Property name="type" typeID="Pint" value="V8"/>
                 </Component>
                 <Component componentID="75" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VconfigurarCommand"/>
@@ -599,8 +599,8 @@
                 <Component componentID="217" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="Vadicionar2Command"/>
                     <Property name="label" typeID="Pjava.lang.String" value="VAdicionar"/>
-                    <Property name="type" typeID="Pint" value="V4"/>
-                    <Property name="priority" typeID="Pint" value="V2"/>
+                    <Property name="type" typeID="Pint" value="V8"/>
+                    <Property name="priority" typeID="Pint" value="V1"/>
                 </Component>
             </Component>
             <Component componentID="12" typeID="C#ResourcesCategory">
