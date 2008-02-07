@@ -111,8 +111,8 @@ public class CalcTicket extends MIDlet implements CommandListener {
         formList = new List("Lista de Compras", Choice.IMPLICIT);
         formList.addCommand(getStatusCommand());
         formList.addCommand(getAlterarCommand());
-        formList.addCommand(getAdicionar2Command());
         formList.addCommand(getRemoverCommand());
+        formList.addCommand(getAdicionar2Command());
         formList.setCommandListener(this);
         formList.setFitPolicy(Choice.TEXT_WRAP_ON);
         formList.setSelectCommand(getAlterarCommand());//GEN-END:|0-initialize|1|0-postInitialize
@@ -380,7 +380,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
     public Command getRemoverCommand() {
         if (removerCommand == null) {//GEN-END:|70-getter|0|70-preInit
             // write pre-init user code here
-            removerCommand = new Command("Remover", Command.OK, 1);//GEN-LINE:|70-getter|1|70-postInit
+            removerCommand = new Command("Remover", Command.ITEM, 2);//GEN-LINE:|70-getter|1|70-postInit
             // write post-init user code here
         }//GEN-BEGIN:|70-getter|2|
         return removerCommand;
@@ -410,7 +410,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
     public Command getAlterarCommand() {
         if (alterarCommand == null) {//GEN-END:|78-getter|0|78-preInit
             // write pre-init user code here
-            alterarCommand = new Command("Alterar", Command.OK, 0);//GEN-LINE:|78-getter|1|78-postInit
+            alterarCommand = new Command("Alterar", Command.ITEM, 0);//GEN-LINE:|78-getter|1|78-postInit
             // write post-init user code here
         }//GEN-BEGIN:|78-getter|2|
         return alterarCommand;
@@ -1018,7 +1018,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
     public Command getAdicionar2Command() {
         if (adicionar2Command == null) {//GEN-END:|217-getter|0|217-preInit
             // write pre-init user code here
-            adicionar2Command = new Command("Adicionar", Command.OK, 2);//GEN-LINE:|217-getter|1|217-postInit
+            adicionar2Command = new Command("Adicionar", Command.ITEM, 1);//GEN-LINE:|217-getter|1|217-postInit
             // write post-init user code here
         }//GEN-BEGIN:|217-getter|2|
         return adicionar2Command;
