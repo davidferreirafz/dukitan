@@ -111,8 +111,8 @@ public class CalcTicket extends MIDlet implements CommandListener {
         formList = new List("Lista de Compras", Choice.IMPLICIT);
         formList.addCommand(getStatusCommand());
         formList.addCommand(getAlterarCommand());
-        formList.addCommand(getRemoverCommand());
         formList.addCommand(getAdicionar2Command());
+        formList.addCommand(getRemoverCommand());
         formList.setCommandListener(this);
         formList.setFitPolicy(Choice.TEXT_WRAP_ON);
         formList.setSelectCommand(getAlterarCommand());//GEN-END:|0-initialize|1|0-postInitialize
