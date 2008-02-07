@@ -214,6 +214,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 switchDisplayable(null, formProduto);//GEN-LINE:|7-commandAction|12|218-postAction
                 // write post-action user code here
+                inicializarProduto();
             } else if (command == alterarCommand) {//GEN-LINE:|7-commandAction|13|136-preAction
                 // write pre-action user code here
                 validacaoSelecao();//GEN-LINE:|7-commandAction|14|136-postAction
