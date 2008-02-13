@@ -1,7 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+///***************************************************************************
+// *   CalcTicket - Mobile                                                   *
+// *   Copyright (C) 2008 by David Ferreira - FZ & DukItan Software          *
+// *   davidferreira.fz@gmail.com - http://dukitan.wordpress.com             *
+// ***************************************************************************
+// *   Este programa é software livre; você pode redistribuí-lo e/ou         *
+// *   modificá-lo sob os termos da Licença Pública Geral GNU, conforme      *
+// *   publicada pela Free Software Foundation, tanto a versão 3 da          *
+// *   Licença como (a seu critério) qualquer versão mais nova.              *
+// ***************************************************************************
+// *   This program is free software; you can redistribute it and/or modify  *
+// *   it under the terms of the GNU General Public License as published by  *
+// *   the Free Software Foundation; either version 3 of the License, or     *
+// *   (at your option) any later version.                                   *
+// *                                                                         *
+// *   You should have received a copy of the GNU General Public License     *
+// *   along with this program; if not, write to the                         *
+// *   Free Software Foundation, Inc.,                                       *
+// *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+// ***************************************************************************/
 
 package com.wordpress.dukitan.calcticket;
 
@@ -13,7 +29,7 @@ import javax.microedition.lcdui.*;
 import org.netbeans.microedition.lcdui.SplashScreen;
 
 /**
- * @author david
+ * @author David Ferreira - FZ
  */
 public class CalcTicket extends MIDlet implements CommandListener {
 
@@ -45,6 +61,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
     private StringItem stringItem1;
     private StringItem stringItem4;
     private SplashScreen splashScreen;
+    private SplashScreen splashScreen1;
     private Command adicionarCommand;
     private Command listarCommand;
     private Command sairCommand;
@@ -58,6 +75,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
     private Command adicionar2Command;
     private Font fonteValor;
     private Image dukitan;
+    private Image logo;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -276,14 +294,20 @@ public class CalcTicket extends MIDlet implements CommandListener {
         } else if (displayable == splashScreen) {
             if (command == SplashScreen.DISMISS_COMMAND) {//GEN-END:|7-commandAction|35|210-preAction
                 // write pre-action user code here
-                switchDisplayable(null, formPrincipal);//GEN-LINE:|7-commandAction|36|210-postAction
+                switchDisplayable(null, getSplashScreen1());//GEN-LINE:|7-commandAction|36|210-postAction
                 // write post-action user code here
                 exibirStatus();
-            }//GEN-BEGIN:|7-commandAction|37|7-postCommandAction
-        }//GEN-END:|7-commandAction|37|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|37|221-preAction
+        } else if (displayable == splashScreen1) {
+            if (command == SplashScreen.DISMISS_COMMAND) {//GEN-END:|7-commandAction|37|221-preAction
+                // write pre-action user code here
+                switchDisplayable(null, formPrincipal);//GEN-LINE:|7-commandAction|38|221-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|39|7-postCommandAction
+        }//GEN-END:|7-commandAction|39|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|38|
-    //</editor-fold>//GEN-END:|7-commandAction|38|
+    }//GEN-BEGIN:|7-commandAction|40|
+    //</editor-fold>//GEN-END:|7-commandAction|40|
 
 
 
@@ -983,7 +1007,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
             splashScreen.setFullScreenMode(true);
             splashScreen.setImage(getDukitan());
             splashScreen.setText("");
-            splashScreen.setTimeout(5000);
+            splashScreen.setTimeout(3000);
             splashScreen.setAllowTimeoutInterrupt(false);//GEN-END:|209-getter|1|209-postInit
             // write post-init user code here
         }//GEN-BEGIN:|209-getter|2|
@@ -1024,6 +1048,46 @@ public class CalcTicket extends MIDlet implements CommandListener {
         return adicionar2Command;
     }
     //</editor-fold>//GEN-END:|217-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: splashScreen1 ">//GEN-BEGIN:|220-getter|0|220-preInit
+    /**
+     * Returns an initiliazed instance of splashScreen1 component.
+     * @return the initialized component instance
+     */
+    public SplashScreen getSplashScreen1() {
+        if (splashScreen1 == null) {//GEN-END:|220-getter|0|220-preInit
+            // write pre-init user code here
+            splashScreen1 = new SplashScreen(getDisplay());//GEN-BEGIN:|220-getter|1|220-postInit
+            splashScreen1.setTitle("splashScreen1");
+            splashScreen1.setCommandListener(this);
+            splashScreen1.setFullScreenMode(true);
+            splashScreen1.setImage(getLogo());
+            splashScreen1.setTimeout(3000);
+            splashScreen1.setAllowTimeoutInterrupt(false);//GEN-END:|220-getter|1|220-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|220-getter|2|
+        return splashScreen1;
+    }
+    //</editor-fold>//GEN-END:|220-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: logo ">//GEN-BEGIN:|222-getter|0|222-preInit
+    /**
+     * Returns an initiliazed instance of logo component.
+     * @return the initialized component instance
+     */
+    public Image getLogo() {
+        if (logo == null) {//GEN-END:|222-getter|0|222-preInit
+            // write pre-init user code here
+            try {//GEN-BEGIN:|222-getter|1|222-@java.io.IOException
+                logo = Image.createImage("/calcticket.png");
+            } catch (java.io.IOException e) {//GEN-END:|222-getter|1|222-@java.io.IOException
+                e.printStackTrace();
+            }//GEN-LINE:|222-getter|2|222-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|222-getter|3|
+        return logo;
+    }
+    //</editor-fold>//GEN-END:|222-getter|3|
 
 
 

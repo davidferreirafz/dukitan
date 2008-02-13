@@ -509,6 +509,25 @@
                         <Property name="appearanceMode" typeID="Pint" value="V1"/>
                     </Component>
                 </Component>
+                <Component componentID="220" typeID="Corg.netbeans.microedition.lcdui.SplashScreen">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VsplashScreen1"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:4_R221"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VsplashScreen1"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="isFullScreen" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="image" typeID="Cjavax.microedition.lcdui.Image" value="R222"/>
+                    <Property name="timeout" typeID="Pint" value="V3000"/>
+                    <Property name="allowTimeoutInterrupt" typeID="Pboolean" value="Vfalse"/>
+                    <Component componentID="221" typeID="C#SplashScreenDismissCommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R223"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R220"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R65"/>
+                        <Component componentID="223" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R221"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                        </Component>
+                    </Component>
+                </Component>
                 <Component componentID="209" typeID="Corg.netbeans.microedition.lcdui.SplashScreen">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VsplashScreen"/>
                     <Property name="commands" typeID="1C#CommandEventSource" value="A1:4_R210"/>
@@ -517,7 +536,7 @@
                     <Property name="isFullScreen" typeID="Pboolean" value="Vtrue"/>
                     <Property name="image" typeID="Cjavax.microedition.lcdui.Image" value="R211"/>
                     <Property name="text" typeID="Pjava.lang.String" value="V"/>
-                    <Property name="timeout" typeID="Pint" value="V5000"/>
+                    <Property name="timeout" typeID="Pint" value="V3000"/>
                     <Property name="allowTimeoutInterrupt" typeID="Pboolean" value="Vfalse"/>
                     <Component componentID="210" typeID="C#SplashScreenDismissCommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R214"/>
@@ -525,7 +544,7 @@
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R65"/>
                         <Component componentID="214" typeID="C#SwitchDisplayableEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R210"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R220"/>
                         </Component>
                     </Component>
                 </Component>
@@ -604,6 +623,10 @@
                 </Component>
             </Component>
             <Component componentID="12" typeID="C#ResourcesCategory">
+                <Component componentID="222" typeID="Cjavax.microedition.lcdui.Image">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="Vlogo"/>
+                    <Property name="resourcePath" typeID="Pjava.lang.String" value="V/calcticket.png"/>
+                </Component>
                 <Component componentID="208" typeID="Cjavax.microedition.lcdui.Font">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VfonteValor"/>
                     <Property name="fontKind" typeID="Pint" value="V1"/>
@@ -619,33 +642,34 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="103" descriptorID="componentNode103" x="4858" y="393"/>
-        <Node componentID="43" descriptorID="componentNode43" x="26" y="172"/>
-        <Node componentID="145" descriptorID="componentNode145" x="3509" y="393"/>
-        <Node componentID="111" descriptorID="componentNode111" x="3994" y="393"/>
-        <Node componentID="109" descriptorID="componentNode109" x="3758" y="181"/>
-        <Node componentID="2" descriptorID="componentNode2" x="758" y="542"/>
-        <Node componentID="209" descriptorID="componentNode209" x="729" y="118"/>
         <Node componentID="99" descriptorID="componentNode99" x="1520" y="181"/>
-        <Node componentID="13" descriptorID="componentNode13" x="342" y="231"/>
-        <Node componentID="118" descriptorID="componentNode118" x="2221" y="393"/>
-        <Node componentID="105" descriptorID="componentNode105" x="4654" y="181"/>
-        <Node componentID="116" descriptorID="componentNode116" x="1966" y="181"/>
-        <Node componentID="199" descriptorID="componentNode199" x="119" y="30"/>
-        <Node componentID="175" descriptorID="componentNode175" x="3085" y="393"/>
-        <Node componentID="141" descriptorID="componentNode141" x="1077" y="181"/>
-        <Node componentID="181" descriptorID="componentNode181" x="550" y="194"/>
-        <Node componentID="140" descriptorID="componentNode140" x="1311" y="393"/>
-        <Node componentID="37" descriptorID="componentNode37" x="461" y="514"/>
         <Node componentID="155" descriptorID="componentNode155" x="4455" y="393"/>
-        <Node componentID="169" descriptorID="componentNode169" x="2669" y="393"/>
-        <Node componentID="131" descriptorID="componentNode131" x="111" y="411"/>
-        <Node componentID="174" descriptorID="componentNode174" x="2879" y="181"/>
-        <Node componentID="100" descriptorID="componentNode100" x="1724" y="393"/>
-        <Node componentID="144" descriptorID="componentNode144" x="3310" y="181"/>
         <Node componentID="153" descriptorID="componentNode153" x="4204" y="181"/>
-        <Node componentID="80" descriptorID="componentNode80" x="457" y="642"/>
+        <Node componentID="141" descriptorID="componentNode141" x="1077" y="181"/>
+        <Node componentID="109" descriptorID="componentNode109" x="3758" y="181"/>
+        <Node componentID="174" descriptorID="componentNode174" x="2879" y="181"/>
+        <Node componentID="175" descriptorID="componentNode175" x="3085" y="393"/>
+        <Node componentID="43" descriptorID="componentNode43" x="26" y="172"/>
         <Node componentID="167" descriptorID="componentNode167" x="2430" y="181"/>
+        <Node componentID="169" descriptorID="componentNode169" x="2669" y="393"/>
+        <Node componentID="80" descriptorID="componentNode80" x="457" y="642"/>
+        <Node componentID="181" descriptorID="componentNode181" x="550" y="194"/>
+        <Node componentID="37" descriptorID="componentNode37" x="461" y="514"/>
+        <Node componentID="2" descriptorID="componentNode2" x="758" y="542"/>
+        <Node componentID="131" descriptorID="componentNode131" x="111" y="411"/>
+        <Node componentID="111" descriptorID="componentNode111" x="3994" y="393"/>
+        <Node componentID="144" descriptorID="componentNode144" x="3310" y="181"/>
+        <Node componentID="118" descriptorID="componentNode118" x="2221" y="393"/>
+        <Node componentID="13" descriptorID="componentNode13" x="342" y="231"/>
+        <Node componentID="140" descriptorID="componentNode140" x="1311" y="393"/>
+        <Node componentID="220" descriptorID="componentNode220" x="520" y="46"/>
+        <Node componentID="105" descriptorID="componentNode105" x="4654" y="181"/>
+        <Node componentID="100" descriptorID="componentNode100" x="1724" y="393"/>
         <Node componentID="159" descriptorID="componentNode159" x="29" y="668"/>
+        <Node componentID="209" descriptorID="componentNode209" x="729" y="118"/>
+        <Node componentID="103" descriptorID="componentNode103" x="4858" y="393"/>
+        <Node componentID="116" descriptorID="componentNode116" x="1966" y="181"/>
+        <Node componentID="145" descriptorID="componentNode145" x="3509" y="393"/>
+        <Node componentID="199" descriptorID="componentNode199" x="119" y="30"/>
     </FlowScene>
 </VisualDesign>
