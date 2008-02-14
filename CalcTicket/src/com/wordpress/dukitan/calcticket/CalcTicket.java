@@ -34,6 +34,7 @@ import org.netbeans.microedition.lcdui.SplashScreen;
 public class CalcTicket extends MIDlet implements CommandListener {
 
     private boolean midletPaused = false;
+    private Fachada fachada;
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private java.util.Hashtable __previousDisplayables = new java.util.Hashtable();
@@ -60,8 +61,8 @@ public class CalcTicket extends MIDlet implements CommandListener {
     private StringItem stringItem;
     private StringItem stringItem1;
     private StringItem stringItem4;
-    private SplashScreen splashScreen;
     private SplashScreen splashScreen1;
+    private SplashScreen splashScreen;
     private Command adicionarCommand;
     private Command listarCommand;
     private Command sairCommand;
@@ -73,9 +74,9 @@ public class CalcTicket extends MIDlet implements CommandListener {
     private Command sobreCommand;
     private Command statusCommand;
     private Command adicionar2Command;
+    private Image logo;
     private Font fonteValor;
     private Image dukitan;
-    private Image logo;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -135,6 +136,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         formList.setFitPolicy(Choice.TEXT_WRAP_ON);
         formList.setSelectCommand(getAlterarCommand());//GEN-END:|0-initialize|1|0-postInitialize
         // write post-initialize user code here
+        fachada = new Fachada();
     }//GEN-BEGIN:|0-initialize|2|
     //</editor-fold>//GEN-END:|0-initialize|2|
 
@@ -266,7 +268,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
                 // write post-action user code here            
                 carregarLista();
             } else if (command == sairCommand) {//GEN-LINE:|7-commandAction|25|33-preAction
-                Fachada.salvar();
+                fachada.salvar();
                 // write pre-action user code here
                 exitMIDlet();//GEN-LINE:|7-commandAction|26|33-postAction
                 // write post-action user code here
@@ -471,7 +473,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
      */
     public void carregarConfig() {//GEN-END:|100-entry|0|101-preAction
         // write pre-action user code here
-        Config config = Fachada.getConfig();//GEN-BEGIN:|100-entry|1|101-postAction
+        Config config = fachada.getConfig();//GEN-BEGIN:|100-entry|1|101-postAction
         
         fcValorTicket.setString(config.getValor());
         fcOutroTicket.setString(config.getOutroTicket());//GEN-END:|100-entry|1|101-postAction
@@ -490,7 +492,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         config.setValor(fcValorTicket.getString());
         config.setOutroTicket(fcOutroTicket.getString());
         
-        Fachada.setConfig(config);//GEN-END:|103-entry|1|104-postAction
+        fachada.setConfig(config);//GEN-END:|103-entry|1|104-postAction
         // write post-action user code here
     }//GEN-BEGIN:|103-entry|2|
     //</editor-fold>//GEN-END:|103-entry|2|
@@ -507,7 +509,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         produto.setQuantidade(produtoQuantidade.getString());
         produto.setValor(produtoValor.getString());
         
-        Fachada.adicionar(produto);//GEN-END:|109-entry|1|110-postAction
+        fachada.adicionar(produto);//GEN-END:|109-entry|1|110-postAction
         // write post-action user code here
     }//GEN-BEGIN:|109-entry|2|
     //</editor-fold>//GEN-END:|109-entry|2|
@@ -595,7 +597,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         // write pre-action user code here
         formList.deleteAll();//GEN-BEGIN:|141-entry|1|142-postAction
         
-        String lst[] = Fachada.getProdutos();
+        String lst[] = fachada.getProdutos();
         
         if (lst!=null){
             for (int i=0; i< lst.length; i++){
@@ -616,12 +618,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         int selecao = formList.getSelectedIndex();//GEN-BEGIN:|145-entry|1|146-postAction
         
         if (selecao>=0){
-/*
-    String item = formList.getString(selecao);
-    Produto p = new Produto();
-    p.makeProduto(item);
- */
-            Fachada.remover(selecao);
+            fachada.remover(selecao);
             
             carregarLista();
         }//GEN-END:|145-entry|1|146-postAction
@@ -638,7 +635,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         int selecao = formList.getSelectedIndex();//GEN-BEGIN:|153-entry|1|154-postAction
         
         if (selecao>=0){
-            Produto p = Fachada.getProduto(selecao);
+            Produto p = fachada.getProduto(selecao);
             
             faDescricao.setText(p.getDescricao());
             faQuantidade.setString(String.valueOf(p.getQuantidade()));
@@ -727,7 +724,7 @@ public class CalcTicket extends MIDlet implements CommandListener {
         produto.setQuantidade(faQuantidade.getString());
         produto.setValor(faValor.getString());
         
-        Fachada.alterar(produto);
+        fachada.alterar(produto);
         
         carregarLista();//GEN-END:|167-entry|1|168-postAction
         // write post-action user code here
@@ -740,14 +737,13 @@ public class CalcTicket extends MIDlet implements CommandListener {
      */
     public void exibirStatus() {//GEN-END:|175-entry|0|176-preAction
         // write pre-action user code here
-        fpValorCompra.setText("  "+Fachada.getTotalCompra());//GEN-BEGIN:|175-entry|1|176-postAction
+        fpValorCompra.setText("  "+fachada.getTotalCompra());//GEN-BEGIN:|175-entry|1|176-postAction
         
-        fpQuantidadeTickets.setText("  "+Fachada.getQuantidadeTickets());
+        fpQuantidadeTickets.setText("  "+fachada.getQuantidadeTickets());
         
-        fpValorDisponivel.setText("  "+Fachada.getValorDisponivel());
+        fpValorDisponivel.setText("  "+fachada.getValorDisponivel());
         
-        fpValorComplemento.setText("  "+Fachada.getValorComplemento());
-        
+        fpValorComplemento.setText("  "+fachada.getValorComplemento());
 //GEN-END:|175-entry|1|176-postAction
         // write post-action user code here
     }//GEN-BEGIN:|175-entry|2|
