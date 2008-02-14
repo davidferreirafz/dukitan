@@ -40,10 +40,10 @@
                     </Component>
                 </Component>
                 <Component componentID="99" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VConfig config = Fachada.getConfig();&#10;&#10;fcValorTicket.setString(config.getValor());&#10;fcOutroTicket.setString(config.getOutroTicket());"/>
+                    <Property name="accessCode" typeID="P#javacode" value="VConfig config = fachada.getConfig();&#10;&#10;fcValorTicket.setString(config.getValor());&#10;fcOutroTicket.setString(config.getOutroTicket());"/>
                 </Component>
                 <Component componentID="111" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VProduto produto = new Produto();&#10;&#10;produto.setDescricao(produtoDescricao.getString());&#10;produto.setQuantidade(produtoQuantidade.getString());&#10;produto.setValor(produtoValor.getString());&#10;&#10;Fachada.adicionar(produto);"/>
+                    <Property name="accessCode" typeID="P#javacode" value="VProduto produto = new Produto();&#10;&#10;produto.setDescricao(produtoDescricao.getString());&#10;produto.setQuantidade(produtoQuantidade.getString());&#10;produto.setValor(produtoValor.getString());&#10;&#10;fachada.adicionar(produto);"/>
                 </Component>
                 <Component componentID="109" typeID="C#EntryPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VsalvarProduto"/>
@@ -57,7 +57,7 @@
                     </Component>
                 </Component>
                 <Component componentID="105" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VConfig config = new Config();&#10;        &#10;config.setValor(fcValorTicket.getString());&#10;config.setOutroTicket(fcOutroTicket.getString());&#10;&#10;Fachada.setConfig(config);"/>
+                    <Property name="accessCode" typeID="P#javacode" value="VConfig config = new Config();&#10;        &#10;config.setValor(fcValorTicket.getString());&#10;config.setOutroTicket(fcOutroTicket.getString());&#10;&#10;fachada.setConfig(config);"/>
                 </Component>
                 <Component componentID="118" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="VprodutoDescricao.setString(&quot;&quot;);&#10;produtoQuantidade.setString(&quot;1&quot;);&#10;produtoValor.setString(&quot;&quot;);&#10;"/>
@@ -85,7 +85,7 @@
                     </Component>
                 </Component>
                 <Component componentID="140" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VformList.deleteAll(); &#10;&#10;String lst[] = Fachada.getProdutos();&#10;&#10;if (lst!=null){&#10;    for (int i=0; i&lt; lst.length; i++){&#10;        formList.append(lst[i], null);&#10;    }&#10;}&#10;   "/>
+                    <Property name="accessCode" typeID="P#javacode" value="VformList.deleteAll(); &#10;&#10;String lst[] = fachada.getProdutos();&#10;&#10;if (lst!=null){&#10;    for (int i=0; i&lt; lst.length; i++){&#10;        formList.append(lst[i], null);&#10;    }&#10;}&#10;   "/>
                 </Component>
                 <Component componentID="153" typeID="C#EntryPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VcarregarProduto"/>
@@ -99,7 +99,7 @@
                     </Component>
                 </Component>
                 <Component componentID="155" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="Vint selecao = formList.getSelectedIndex();&#10;&#10;if (selecao&gt;=0){&#10;    Produto p = Fachada.getProduto(selecao);&#10;    &#10;    faDescricao.setText(p.getDescricao());&#10;    faQuantidade.setString(String.valueOf(p.getQuantidade()));&#10;    faValor.setString(String.valueOf(p.getValor()));&#10;}"/>
+                    <Property name="accessCode" typeID="P#javacode" value="Vint selecao = formList.getSelectedIndex();&#10;&#10;if (selecao&gt;=0){&#10;    Produto p = fachada.getProduto(selecao);&#10;    &#10;    faDescricao.setText(p.getDescricao());&#10;    faQuantidade.setString(String.valueOf(p.getQuantidade()));&#10;    faValor.setString(String.valueOf(p.getValor()));&#10;}"/>
                 </Component>
                 <Component componentID="159" typeID="C#IfPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VvalidacaoSelecao"/>
@@ -122,7 +122,7 @@
                     </Component>
                 </Component>
                 <Component componentID="144" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="Vint selecao = formList.getSelectedIndex();&#10;&#10;if (selecao&gt;=0){&#10;/*&#10;    String item = formList.getString(selecao);&#10;    Produto p = new Produto();&#10;    p.makeProduto(item);&#10;*/    &#10;    Fachada.remover(selecao);&#10;&#10;    carregarLista();&#10;}"/>
+                    <Property name="accessCode" typeID="P#javacode" value="Vint selecao = formList.getSelectedIndex();&#10;&#10;if (selecao&gt;=0){&#10;    fachada.remover(selecao);&#10;&#10;    carregarLista();&#10;}"/>
                 </Component>
                 <Component componentID="145" typeID="C#EntryPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VremoverProduto"/>
@@ -136,7 +136,7 @@
                     </Component>
                 </Component>
                 <Component componentID="169" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VProduto produto = new Produto();&#10;&#10;produto.setDescricao(faDescricao.getText());&#10;produto.setQuantidade(faQuantidade.getString());&#10;produto.setValor(faValor.getString());&#10;&#10;Fachada.alterar(produto);&#10;&#10;carregarLista();"/>
+                    <Property name="accessCode" typeID="P#javacode" value="VProduto produto = new Produto();&#10;&#10;produto.setDescricao(faDescricao.getText());&#10;produto.setQuantidade(faQuantidade.getString());&#10;produto.setValor(faValor.getString());&#10;&#10;fachada.alterar(produto);&#10;&#10;carregarLista();"/>
                 </Component>
                 <Component componentID="175" typeID="C#EntryPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VexibirStatus"/>
@@ -150,7 +150,7 @@
                     </Component>
                 </Component>
                 <Component componentID="174" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VfpValorCompra.setText(&quot;  &quot;+Fachada.getTotalCompra());&#10;&#10;fpQuantidadeTickets.setText(&quot;  &quot;+Fachada.getQuantidadeTickets());&#10;&#10;fpValorDisponivel.setText(&quot;  &quot;+Fachada.getValorDisponivel());&#10;&#10;fpValorComplemento.setText(&quot;  &quot;+Fachada.getValorComplemento());&#10;&#10;"/>
+                    <Property name="accessCode" typeID="P#javacode" value="VfpValorCompra.setText(&quot;  &quot;+fachada.getTotalCompra());&#10;&#10;fpQuantidadeTickets.setText(&quot;  &quot;+fachada.getQuantidadeTickets());&#10;&#10;fpValorDisponivel.setText(&quot;  &quot;+fachada.getValorDisponivel());&#10;&#10;fpValorComplemento.setText(&quot;  &quot;+fachada.getValorComplemento());&#10;"/>
                 </Component>
                 <Component componentID="167" typeID="C#EntryPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="ValterarProduto"/>
@@ -642,34 +642,34 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="99" descriptorID="componentNode99" x="1520" y="181"/>
-        <Node componentID="155" descriptorID="componentNode155" x="4455" y="393"/>
-        <Node componentID="153" descriptorID="componentNode153" x="4204" y="181"/>
-        <Node componentID="141" descriptorID="componentNode141" x="1077" y="181"/>
-        <Node componentID="109" descriptorID="componentNode109" x="3758" y="181"/>
-        <Node componentID="174" descriptorID="componentNode174" x="2879" y="181"/>
-        <Node componentID="175" descriptorID="componentNode175" x="3085" y="393"/>
-        <Node componentID="43" descriptorID="componentNode43" x="26" y="172"/>
-        <Node componentID="167" descriptorID="componentNode167" x="2430" y="181"/>
-        <Node componentID="169" descriptorID="componentNode169" x="2669" y="393"/>
-        <Node componentID="80" descriptorID="componentNode80" x="457" y="642"/>
-        <Node componentID="181" descriptorID="componentNode181" x="550" y="194"/>
-        <Node componentID="37" descriptorID="componentNode37" x="461" y="514"/>
-        <Node componentID="2" descriptorID="componentNode2" x="758" y="542"/>
-        <Node componentID="131" descriptorID="componentNode131" x="111" y="411"/>
         <Node componentID="111" descriptorID="componentNode111" x="3994" y="393"/>
+        <Node componentID="141" descriptorID="componentNode141" x="1077" y="181"/>
+        <Node componentID="145" descriptorID="componentNode145" x="3509" y="393"/>
+        <Node componentID="103" descriptorID="componentNode103" x="4858" y="393"/>
+        <Node componentID="2" descriptorID="componentNode2" x="758" y="542"/>
+        <Node componentID="159" descriptorID="componentNode159" x="29" y="668"/>
+        <Node componentID="174" descriptorID="componentNode174" x="2879" y="181"/>
         <Node componentID="144" descriptorID="componentNode144" x="3310" y="181"/>
-        <Node componentID="118" descriptorID="componentNode118" x="2221" y="393"/>
-        <Node componentID="13" descriptorID="componentNode13" x="342" y="231"/>
+        <Node componentID="80" descriptorID="componentNode80" x="457" y="642"/>
+        <Node componentID="199" descriptorID="componentNode199" x="119" y="30"/>
+        <Node componentID="209" descriptorID="componentNode209" x="729" y="118"/>
+        <Node componentID="99" descriptorID="componentNode99" x="1520" y="181"/>
+        <Node componentID="100" descriptorID="componentNode100" x="1724" y="393"/>
+        <Node componentID="37" descriptorID="componentNode37" x="461" y="514"/>
+        <Node componentID="131" descriptorID="componentNode131" x="130" y="433"/>
+        <Node componentID="43" descriptorID="componentNode43" x="26" y="172"/>
         <Node componentID="140" descriptorID="componentNode140" x="1311" y="393"/>
+        <Node componentID="116" descriptorID="componentNode116" x="1966" y="181"/>
+        <Node componentID="169" descriptorID="componentNode169" x="2669" y="393"/>
+        <Node componentID="109" descriptorID="componentNode109" x="3758" y="181"/>
+        <Node componentID="155" descriptorID="componentNode155" x="4455" y="393"/>
         <Node componentID="220" descriptorID="componentNode220" x="520" y="46"/>
         <Node componentID="105" descriptorID="componentNode105" x="4654" y="181"/>
-        <Node componentID="100" descriptorID="componentNode100" x="1724" y="393"/>
-        <Node componentID="159" descriptorID="componentNode159" x="29" y="668"/>
-        <Node componentID="209" descriptorID="componentNode209" x="729" y="118"/>
-        <Node componentID="103" descriptorID="componentNode103" x="4858" y="393"/>
-        <Node componentID="116" descriptorID="componentNode116" x="1966" y="181"/>
-        <Node componentID="145" descriptorID="componentNode145" x="3509" y="393"/>
-        <Node componentID="199" descriptorID="componentNode199" x="119" y="30"/>
+        <Node componentID="181" descriptorID="componentNode181" x="550" y="194"/>
+        <Node componentID="13" descriptorID="componentNode13" x="342" y="231"/>
+        <Node componentID="153" descriptorID="componentNode153" x="4204" y="181"/>
+        <Node componentID="175" descriptorID="componentNode175" x="3085" y="393"/>
+        <Node componentID="167" descriptorID="componentNode167" x="2430" y="181"/>
+        <Node componentID="118" descriptorID="componentNode118" x="2221" y="393"/>
     </FlowScene>
 </VisualDesign>

@@ -36,19 +36,19 @@ import com.wordpress.dukitan.calcticket.util.Transformacoes;
  */
 public class Fachada
 {
-    private static Config config;
-    private static Compras compras;   
-    private static DAOCompras daoCompras;
-    private static DAOConfig daoConfig;    
+    private Config config;
+    private Compras compras;   
+    private DAOCompras daoCompras;
+    private DAOConfig daoConfig;    
     
     
-    static 
+    public Fachada() 
     {
         carregar();
     }
     
     
-    public static void carregar()
+    public void carregar()
     {    
         daoCompras = DAOFactory.getDAOCompras();
         daoConfig = DAOFactory.getDAOConfig();        
@@ -59,54 +59,54 @@ public class Fachada
         calcular();
     }
 
-    public static void salvar()
+    public void salvar()
     {
         daoConfig.salvar(config);
         daoCompras.salvar(compras);
     }
     
-    public static Config getConfig()
+    public  Config getConfig()
     {
         return config;
     }
     
-    public static void setConfig(Config config)
+    public void setConfig(Config config)
     {
-        Fachada.config = config;
+        this.config = config;
         calcular();
     }
     
-    public static Produto getProduto(int indice)
+    public Produto getProduto(int indice)
     {
         return compras.getProduto(indice);
     }
     
-    public static void adicionar(Produto produto)
+    public void adicionar(Produto produto)
     {
         compras.adicionar(produto);
         calcular();
     }
 
-    public static void alterar(Produto produto)
+    public void alterar(Produto produto)
     {
         compras.atualizar(produto);
 
         calcular();        
     }
 
-    public static void remover(int indice)
+    public void remover(int indice)
     {
         compras.remover(indice);
         calcular();
     }    
     
-    public static String[] getProdutos()
+    public String[] getProdutos()
     {
         return compras.getProdutos();
     }
     
     
-    protected static void calcular()
+    protected void calcular()
     {
         float totalCompra = compras.getValor();
  
@@ -114,22 +114,22 @@ public class Fachada
         config.calcular();
     }
     
-    public static String getTotalCompra()
+    public String getTotalCompra()
     {
         return Transformacoes.float2String(config.getTotalCompra());
     }
     
-    public static String getQuantidadeTickets()
+    public String getQuantidadeTickets()
     {
         return String.valueOf(config.getQuantidadeTicket());
     }
     
-    public static String getValorDisponivel()
+    public String getValorDisponivel()
     {
         return Transformacoes.float2String(config.getValorDisponivel());
     }
 
-    public static String getValorComplemento()
+    public String getValorComplemento()
     {
         return Transformacoes.float2String(config.getValorComplemento());
     }    
