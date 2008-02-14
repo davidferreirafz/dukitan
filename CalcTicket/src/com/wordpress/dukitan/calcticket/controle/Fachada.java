@@ -26,6 +26,7 @@ import com.wordpress.dukitan.calcticket.bean.Config;
 import com.wordpress.dukitan.calcticket.bean.Produto;
 import com.wordpress.dukitan.calcticket.model.DAOCompras;
 import com.wordpress.dukitan.calcticket.model.DAOConfig;
+import com.wordpress.dukitan.calcticket.model.DAOFactory;
 import com.wordpress.dukitan.calcticket.util.Transformacoes;
 
 
@@ -37,6 +38,8 @@ public class Fachada
 {
     private static Config config;
     private static Compras compras;   
+    private static DAOCompras daoCompras;
+    private static DAOConfig daoConfig;    
     
     
     static 
@@ -46,17 +49,20 @@ public class Fachada
     
     
     public static void carregar()
-    {       
-        config  = DAOConfig.carregar();
-        compras = DAOCompras.carregar();
+    {    
+        daoCompras = DAOFactory.getDAOCompras();
+        daoConfig = DAOFactory.getDAOConfig();        
+        
+        config  = daoConfig.carregar();
+        compras = daoCompras.carregar();
         
         calcular();
     }
 
     public static void salvar()
     {
-        DAOConfig.salvar(config);
-        DAOCompras.salvar(compras);
+        daoConfig.salvar(config);
+        daoCompras.salvar(compras);
     }
     
     public static Config getConfig()
