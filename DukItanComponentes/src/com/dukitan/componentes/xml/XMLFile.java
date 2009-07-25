@@ -198,8 +198,8 @@ public class XMLFile
      * @return valor do elemento
      */
     public boolean getBoolean(String parent, String tag)
-    {
-        return Boolean.parseBoolean(getString(parent,tag));
+    {   	
+        return Boolean.parseBoolean(getStringOrBooleanDefault(getString(parent,tag)));
     }
     
     /**
@@ -209,10 +209,10 @@ public class XMLFile
      * @return valor do elemento
      */
     public int getInt(String parent, String tag)
-    {
-        return Integer.parseInt(getString(parent,tag));
+    {  	
+        return Integer.parseInt(getStringOrIntDefault(getString(parent,tag)));
     } 
-    
+        
     @SuppressWarnings("unchecked")
     /**
      * Retorna o valor do elemento
@@ -245,7 +245,7 @@ public class XMLFile
      */
     public boolean getBoolean(String parent, String tag, String atributo) throws Exception
     {
-        return Boolean.parseBoolean(getString(parent,tag,atributo));
+        return Boolean.parseBoolean(getStringOrBooleanDefault(getString(parent,tag,atributo)));
     }
     
     /**
@@ -257,9 +257,11 @@ public class XMLFile
      * @throws NumberFormatException 
      */
     public int getInt(String parent, String tag, String atributo) throws NumberFormatException, Exception
-    {
-        return Integer.parseInt(getString(parent,tag,atributo));
+    {  	
+        return Integer.parseInt(getStringOrIntDefault(getString(parent,tag,atributo)));
     }    
+    
+
     
     @SuppressWarnings("unchecked")
     /**
@@ -289,5 +291,24 @@ public class XMLFile
 
         return value;
     }     
-
+    private String getStringOrIntDefault(String value)
+    {
+    	String tmp = value;
+    	
+    	if ((tmp==null)||("".equals(tmp))){
+    		tmp="0";
+    	}
+    	
+    	return tmp;
+    }
+    private String getStringOrBooleanDefault(String value)
+    {
+    	String tmp = value;
+    	
+    	if ((tmp==null)||("".equals(tmp))){
+    		tmp="false";
+    	}
+    	
+    	return tmp;
+    }    
 }
