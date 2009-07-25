@@ -2,8 +2,8 @@
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
-<META NAME="Author" CONTENT="WebDesign by Arley Barros Leal da Silveira - arley@pobox.com">
-<META NAME="Generator" CONTENT="NetObjects Fusion 4.0 Trial for Windows">
+<META NAME="Author" CONTENT="David Ferreira">
+<META NAME="Generator" CONTENT="Kompozer">
 <TITLE>Ferramenta de Tradução</TITLE>
 </HEAD>
 <BODY>
