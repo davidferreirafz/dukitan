@@ -1,12 +1,10 @@
 <?php 
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
-include_once($PATH_APP.'/package/util/componente.php');
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/package/util/Componente.php');
 
 $id_software = isset($_GET['id_software']) ? $_GET['id_software'] : "";
 $id_idioma   = isset($_GET['id_idioma'])   ? $_GET['id_idioma']   : "";
-
-
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">

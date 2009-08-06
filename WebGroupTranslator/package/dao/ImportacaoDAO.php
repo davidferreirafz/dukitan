@@ -1,8 +1,9 @@
 <?php
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/lib/set_path.php');
 
-include_once($PATH_APP.'/package/dao/AbstractDAO.php');
+include_once(PATH_DKPC.'/package/dao/AbstractDAO.php');
 
 class ImportacaoDAO extends AbstractDAO
 {
@@ -136,7 +137,7 @@ class ImportacaoDAO extends AbstractDAO
     		if (strlen($tmpTexto)>1){       		
         		$parametro = array($tmpTexto,$tmpChave,$id_software,$id_idioma);
         		
-        		if ($this->db->Execute('UPDATE texto t SET t.texto=? WHERE t.chave=? AND t.id_software=? AND t.id_idioma=?',$parametro)==FALSE){	
+        		if ($this->db->Execute('UPDATE texto t SET t.texto=?,dt_revisao=sysdate() WHERE t.chave=? AND t.id_software=? AND t.id_idioma=?',$parametro)==FALSE){	
         			$constante_erro[$indiceErro]=$constante[$i];		
         			$indiceErro++;
         		}

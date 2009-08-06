@@ -1,7 +1,7 @@
 <?php 
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
-include_once($PATH_APP.'/package/util/componente.php');
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/package/util/Componente.php');
 
 $id_software = isset($_GET['id_software']) ? $_GET['id_software'] : "";
 $id_versao   = isset($_GET['id_versao'])   ? $_GET['id_versao']   : "";

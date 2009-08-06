@@ -1,8 +1,9 @@
 <?php
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/lib/set_path.php');
 
-include_once($PATH_APP.'/package/dao/DAO.php');
+include_once(PATH_DKPC.'/package/dao/DAO.php');
 include_once($PATH_APP.'/package/to/VersaoTO.php');
 
 

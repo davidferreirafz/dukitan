@@ -1,14 +1,11 @@
 <?php
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
-
-include_once($PATH_APP.'/package/dao/AbstractDAO.php');
-include_once($PATH_APP.'/package/to/TO.php');
+include_once(dirname(__FILE__).'/AbstractDAO.php');
+include_once(dirname(__FILE__).'/../to/TO.php');
 
 
 abstract class DAO extends AbstractDAO {
 
-    public $meta;
 
     abstract public function inserir(TO $to);
 

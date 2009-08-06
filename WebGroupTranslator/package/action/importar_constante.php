@@ -1,6 +1,10 @@
 <?php
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/lib/set_path.php');
+include_once(PATH_SAA.'/saa.php');
+//Adicionando verificacao de Seguranca
+SAA::check_page($_SERVER['PHP_SELF']);
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
 
 	$id_software = $_POST['id_software'];
 	$id_versao   = $_POST['id_versao'];
@@ -12,12 +16,10 @@ $PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
 		header("Location: ".$PATH_APP."/package/page/importar_constante.php?id_software=".$id_software."&id_versao=".$id_versao);
 		
 	} else {
-
 		include_once($PATH_APP.'/package/dao/ImportacaoDAO.php');
-		include_once($PATH_APP.'/package/util/arquivo.php');
+		include_once($PATH_APP.'/package/util/Arquivo.php');
 
-
-		$constante = carregarArquivo($arquivo);
+		$constante = carregar($arquivo);
 		
 		echo "<h2>Importando constantes</h2>";
 	
