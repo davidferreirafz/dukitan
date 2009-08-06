@@ -1,10 +1,7 @@
 <?php
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
-
-include_once($PATH_APP.'/lib/config.php');
-include_once($PATH_APP.'/lib/adodb/adodb.inc.php');
-
+include_once(PATH_LIB.'/config.php');
+include_once(PATH_ADO.'/adodb.inc.php');
 
 abstract class AbstractDAO {
 

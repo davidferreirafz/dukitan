@@ -4,7 +4,6 @@ $PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
 include_once($PATH_APP.'/package/util/componente.php');
 include_once($PATH_APP.'/package/to/TextoTO.php');
 
-
     session_start();
     $textoTO = $_SESSION['textoTO'];
     $textoPadraoTO = $_SESSION['textoPadraoTO'];

@@ -1,18 +1,19 @@
 <?php
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/lib/set_path.php');
+//include_once(PATH_SAA.'/saa.php');
+//Adicionando verificacao de Seguranca
+//SAA::check_page($_SERVER['PHP_SELF']);
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
 
 	$id_software = $_POST['id_software'];
 	$id_idioma   = $_POST['id_idioma'];
 	$id_versao   = $_POST['id_versao'];
-	
-	
+		
 	if (($id_idioma<1)||($id_versao<1)){
-	    
 		header("Location: ".$PATH_APP."/package/page/exportar_texto_traduzido.php?id_software=".$id_software."&id_idioma=".$id_idioma."&id_versao=".$id_versao);
 		
 	} else {
-	    
 		include_once($PATH_APP.'/package/dao/ExportacaoDAO.php');
 		include_once($PATH_APP.'/package/dao/IdiomaDAO.php');
         include_once($PATH_APP.'/package/dao/VersaoDAO.php');
@@ -33,7 +34,7 @@ $PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
 	    $retorno = $exportacao->recuperarTexto($id_idioma,$id_versao);
 	    
         echo "###########################################################\n";
-	    echo "##  WebGroupTranslator [WGT] - BETA  #       #     v0.3  ##\n";
+	    echo "##  WebGroupTranslator [WGT] - BETA  #       #     v0.5  ##\n";
         echo "##           FreeSoftware - GPLv3.0  #       #   Brazil  ##\n";
         echo "###########################################################\n";
         echo "## \n";

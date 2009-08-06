@@ -1,8 +1,10 @@
 <?php
 
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/lib/set_path.php');
 
-include_once($PATH_APP.'/package/dao/DAO.php');
+include_once(PATH_DKPC.'/package/dao/DAO.php');
+include_once($PATH_APP.'/package/to/MetaTO.php');
 include_once($PATH_APP.'/package/to/TextoTO.php');
 
 
@@ -11,7 +13,7 @@ class TextoDAO extends DAO {
     public function __construct()
     {
         parent::__construct();
-        $meta = new Meta();
+        $meta = new MetaTO();
     }
 
 
@@ -23,7 +25,7 @@ class TextoDAO extends DAO {
     {
 	    $parametro = array ($texto->texto,$texto->id_texto);	
 
-	    if ($this->db->Execute('UPDATE texto t SET t.texto=? WHERE t.id_texto=?;',$parametro)==FALSE){	
+	    if ($this->db->Execute('UPDATE texto t SET t.texto=?,dt_revisao=sysdate() WHERE t.id_texto=?;',$parametro)==FALSE){	
             return false;
 	    } else {
 	        return true;

@@ -1,18 +1,18 @@
 <?php
-
-$PATH_APP = (defined('PATH_APP')) ? $PATH_APP : './../../';
+$PATH_APP = (defined('PATH_APP')) ? PATH_APP : './../../';
+include_once($PATH_APP.'/lib/set_path.php');
+//include_once(PATH_SAA.'/saa.php');
+//Adicionando verificacao de Seguranca
+//SAA::check_page($_SERVER['PHP_SELF']);
 
 include_once($PATH_APP.'/package/dao/TextoDAO.php');
 include_once($PATH_APP.'/package/dao/TextoPadraoDAO.php');
 
-
     $acao     = isset($_POST['acao'])?$_POST['acao']:"";
-
              
     switch (strtolower($acao)){
         
         case "salvar":
-
                 $textoTO = new TextoTO();
                 $textoTO->popular($_POST);
                 
@@ -47,12 +47,4 @@ include_once($PATH_APP.'/package/dao/TextoPadraoDAO.php');
                 
             break;
     }	
-	
-	
-	
-	/*if (($id_software>0)&&($id_idioma>0)){
-	    
-		header("Location: ".$PATH_APP."/page/editar_texto_traduzido.php?id_software=".$id_software."&id_idioma=".$id_idioma);
-		
-	} */
 ?>
