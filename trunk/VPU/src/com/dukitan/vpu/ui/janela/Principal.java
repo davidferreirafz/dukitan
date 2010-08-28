@@ -69,6 +69,8 @@ public class Principal extends JFrame {
 
 	private JLabel jLabel12 = null;
 
+	private JLabel jLabel13 = null;	
+
 	private ComboBox comboDriver = null;
 
 	private ComboBox comboURL = null;
@@ -148,8 +150,8 @@ public class Principal extends JFrame {
 			jTabbedPane.setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
 			jTabbedPane.setName("tabContainer");
 			jTabbedPane.setBounds(new java.awt.Rectangle(0,0,461,327));
-			jTabbedPane.addTab("Informa��es", null, getJPanel1(), null);
-			jTabbedPane.addTab("Resultado das Permiss�es", null, getJPanel2(), null);
+			jTabbedPane.addTab("Informações", null, getJPanel1(), null);
+			jTabbedPane.addTab("Resultado das Permissões", null, getJPanel2(), null);
 			jTabbedPane.addTab("Script", null, getJPanel13(), null);
 			jTabbedPane.addTab("Sobre", null, getJPanel3(), null);			
 		}
@@ -219,7 +221,7 @@ public class Principal extends JFrame {
 			jLabel1.setText("Senha");
 			jLabel = new JLabel();
 			jLabel.setBounds(new java.awt.Rectangle(30,25,128,22));
-			jLabel.setText("Usu�rio");
+			jLabel.setText("Usuário");
 			jPanel4 = new JPanel();
 			jPanel4.setLayout(null);
 			jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dono do Esquema", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null));
@@ -243,9 +245,9 @@ public class Principal extends JFrame {
 			jLabel3.setText("Senha");
 			jLabel2 = new JLabel();
 			jLabel2.setBounds(new java.awt.Rectangle(30,25,128,22));
-			jLabel2.setText("Usu�rio");
+			jLabel2.setText("Usuário");
 			TitledBorder titledBorder = javax.swing.BorderFactory.createTitledBorder(null, "Dono do Esquema", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null);
-			titledBorder.setTitle("Usu�rio de Conex�o");
+			titledBorder.setTitle("Usuário de Conexão");
 			jPanel5 = new JPanel();
 			jPanel5.setLayout(null);
 			jPanel5.setBorder(titledBorder);
@@ -386,14 +388,14 @@ public class Principal extends JFrame {
 	private JPanel getJPanel7() {
 		if (jPanel7 == null) {
 			jLabel5 = new JLabel();
-			jLabel5.setBounds(new java.awt.Rectangle(20,70,98,16));
+			jLabel5.setBounds(new java.awt.Rectangle(20,70,120,16));
 			jLabel5.setText("JDBC Connection");
 			jLabel4 = new JLabel();
 			jLabel4.setText("Driver");
-			jLabel4.setBounds(new java.awt.Rectangle(20,20,34,16));
+			jLabel4.setBounds(new java.awt.Rectangle(20,20,120,16));
 			jPanel7 = new JPanel();
 			jPanel7.setLayout(null);
-			jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Conex�o", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null));
+			jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Conexão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null));
 			jPanel7.add(jLabel4, null);
 			jPanel7.add(jLabel5, null);
 			jPanel7.add(getComboDriver(), null);
@@ -551,7 +553,7 @@ public class Principal extends JFrame {
 		if (jTextPane == null) {
 			jTextPane = new JTextPane();
 			jTextPane.setBounds(new java.awt.Rectangle(9,116,252,151));
-			jTextPane.setText("Este software � livre para uso, estudo, distribui��o e modifica��o desde que os termos da GPL sejam respeitados.");
+			jTextPane.setText("Este software é livre para uso, estudo, distribuição e modificação desde que os termos da GPL sejam respeitados.");
 			jTextPane.setDoubleBuffered(true);
 			jTextPane.setEditable(false);
 		}
@@ -568,11 +570,14 @@ public class Principal extends JFrame {
 			TitledBorder titledBorder1 = javax.swing.BorderFactory.createTitledBorder(null, "Desenvolvido por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0,0,170));
 			titledBorder1.setTitle("Desenvolvido em Parceria por");
 			jLabel12 = new JLabel();
-			jLabel12.setText("SEAD - NUADD / NUDAC / NURED");
+			jLabel12.setText("SEAD-NUADD - 2005/2006");
+			jLabel13 = new JLabel();
+			jLabel13.setText("DukItan Software - 2005/2010");			
 			jPanel10 = new JPanel();
 			jPanel10.setBounds(new java.awt.Rectangle(9,11,252,91));
 			jPanel10.setBorder(titledBorder1);
 			jPanel10.add(jLabel12, null);
+			jPanel10.add(jLabel13, null);
 		}
 		return jPanel10;
 	}
