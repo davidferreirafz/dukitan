@@ -13,7 +13,7 @@ import org.jdom.input.SAXBuilder;
 
 import com.dukitan.vpu.xml.bean.Usuario;
 
-
+@SuppressWarnings("rawtypes")
 public class ArquivoXML 
 {
 
@@ -69,6 +69,7 @@ public class ArquivoXML
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected void getLista(String tag, Vector vetor)
 	{		
 		List listaRaiz   = elementoRaiz.getChildren(tag);
