@@ -47,6 +47,7 @@ public class Consulta
 		return sequence;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void checarObjetoUsuarioDono(String sql,MetaObjetoBanco objeto) throws Exception
 	{
 	    GSWConnection conexao = null;
@@ -77,6 +78,7 @@ public class Consulta
 	    }	    
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void checarObjetoUsuarioConexao(String sql,MetaObjetoBanco objeto) throws Exception
 	{
 	    GSWConnection conexao = null;

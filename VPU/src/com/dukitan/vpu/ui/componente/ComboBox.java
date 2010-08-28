@@ -56,7 +56,8 @@ public class ComboBox extends JComboBox
 		}
     }
 
-    public void setItens(List lista)
+    @SuppressWarnings("rawtypes")
+	public void setItens(List lista)
     {
 		Iterator i =lista.iterator();
 		while(i.hasNext()){

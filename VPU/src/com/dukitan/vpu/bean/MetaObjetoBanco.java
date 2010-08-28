@@ -2,6 +2,7 @@ package com.dukitan.vpu.bean;
 
 import java.util.Vector;
 
+@SuppressWarnings("rawtypes")
 public class MetaObjetoBanco 
 {
 	protected Vector usuarioDono    = null;
@@ -36,6 +37,7 @@ public class MetaObjetoBanco
 		return ob;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void checar()
 	{
 		boolean achou  = false;
