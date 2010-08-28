@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Sealed: true
+Main-Class: br.org.codigolivre.fanad.vpu.VPUMain
+Class-Path: lib/activation.jar lib/commons-logging.jar lib/gswminiport-devel.jar lib/jdom.jar lib/mail.jar lib/ojdbc14.jar
+Name: "FAnAD::VPU"
+Created-By: "David Ferreira <davidferreira.fz@gmail.com>"
+Implementation-Vendor: "fanad.codigolivre.org.br"
+Implementation-Title: "VPU - Verificação de Permissões entre Usuários v1.1"
+Implementation-Version: "1.1"

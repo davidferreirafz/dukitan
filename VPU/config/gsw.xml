@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GSW>
+    <GSWPoolManager>
+    </GSWPoolManager>
+    <GSWLog>
+        <email>false</email>
+        <console>false</console>
+        <file>false</file>
+    </GSWLog>
+    <GSWMail>
+        <smtp>localhost</smtp>
+        <user>admin@localhost</user>
+        <pass></pass>
+    </GSWMail>  
+</GSW>
