@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VPU>
+	<DONO>
+		<usuario>adm_esquema</usuario>
+		<senha>senha</senha>
+	</DONO>
+	<USUARIO>
+		<usuario>usuario_esquema</usuario>
+		<senha>senha</senha>
+	</USUARIO>
+	<DRIVER>
+		<item>
+			<valor>oracle.jdbc.driver.OracleDriver</valor>
+		</item>
+	</DRIVER>
+	<URL>
+		<item>
+			<valor>jdbc:oracle:thin:@host:1521:instancia</valor>
+		</item>
+	</URL>
+</VPU>
