@@ -4,7 +4,7 @@
 * Site            -  http://software.dukitan.com/en/keyleds/                *
 * vCard Author    -  http://david.dukitan.com/                              *
 *                                                                           *
-* Copyright (C) 2010  David de Almeida Ferreira                             *
+* Copyright (C) 2010-2011  David de Almeida Ferreira                        *
 *****************************************************************************
 *                                                                           *
 * Este arquivo é parte do programa KeyLEDs.                                 *
@@ -30,6 +30,8 @@
 // We need the Plasma Applet headers
 #include <KIcon>
 
+#include <QSpinBox>
+#include <QRadioButton>
 #include <Plasma/Applet>
 #include <Plasma/Svg>
 
@@ -50,22 +52,33 @@ public:
                         const QRect& contentsRect);
     void init();
 
+    void createConfigurationInterface(KConfigDialog* parent);
+    
+    static QString DISPLAY_CAPS_LOCK;
+    static QString DISPLAY_NUM_LOCK;    
 public slots:
     void updateLEDStatus();
-
+    void getFontSize();
+    void setAlign();
+    
+   // void showConfigurationInterface (QWidget *widget);
 
 private:
-    Plasma::Svg m_svg;
-    KIcon m_icon;
     QString textCapsLock;
     QString textNumLock;
+
+    
     bool ledCapsLock;
     bool ledNumLock;
     QString getLedState(QString ledName,QString buffer);
 
     void setLedCapsLockState(QString buffer);
     void setLedNumLockState(QString buffer);
-
+    
+    int fontSize;
+    QSpinBox * spinBox;
+    QRadioButton * rbAlignVertical;
+    bool alignVertical;
 };
 
 // This is the command that links your applet to the .desktop file
