@@ -7,8 +7,11 @@ CMakeDir=/usr/share/cmake-2.8/Modules
 Current CMake Binary=file:///usr/bin/cmake
 CurrentBuildDir=file:///home/desenvolvimento/dukitan/trunk/KeyLEDs/build/release
 CurrentBuildType=Release
-CurrentInstallDir=file:///home/desenvolvimento/dukitan/trunk/KeyLEDs/bin/usr
+CurrentInstallDir=file:///home/desenvolvimento/dukitan/tags/keyleds/current/usr
 ProjectRootRelative=./
 
 [MakeBuilder]
 Number Of Jobs=1
+
+[Project]
+VersionControlSupport=kdevsubversion
