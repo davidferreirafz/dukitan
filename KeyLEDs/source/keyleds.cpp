@@ -39,7 +39,8 @@
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QDialogButtonBox>
-
+#include <QLabel>
+#include <KUrlLabel>
 
 #include <plasma/svg.h>
 #include <plasma/theme.h>
@@ -51,7 +52,6 @@ QString KeyLEDs::DISPLAY_NUM_LOCK="NUM\n\rLOCK";
 
 KeyLEDs::KeyLEDs ( QObject *parent, const QVariantList &args )
         : Plasma::Applet ( parent, args ) {
-    // this will get us the standard applet background, for free!
     setBackgroundHints ( DefaultBackground );
     setHasConfigurationInterface ( true );
     resize ( 100, 100 );
@@ -83,59 +83,80 @@ void KeyLEDs::init() {
 }
 
 
-void KeyLEDs::createConfigurationInterface(KConfigDialog* parent)
-{/*
+void KeyLEDs::createConfigurationInterface ( KConfigDialog* parent ) {
     QWidget *widget = new QWidget();
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    QCheckBox *cb = new QCheckBox(widget);
-    cb->setText("This is just for show");
-    layout->addWidget(cb);
+    widget->resize ( 477, 285 );
+    widget->setMinimumSize ( QSize ( 477, 285 ) );
 
-    parent->addPage(widget, "General", icon());
+    QLabel * lbVersion = new QLabel ( widget );
+    lbVersion->setText("Version");
+    lbVersion->setGeometry ( QRect ( 20, 30, 78, 20 ) );
 
-    widget = new QWidget();
-    layout = new QVBoxLayout(widget);
-    cb = new QCheckBox(widget);
-    cb->setText("David Ferreira");
-    layout->addWidget(cb);
+    QLabel * lbVersionNumber = new QLabel ( widget );
+    lbVersionNumber->setText("1.2");
+    lbVersionNumber->setGeometry ( QRect ( 90, 30, 41, 20 ) );
 
-    parent->addPage(widget, "About", icon());   */
-////
-    QWidget *widget = new QWidget();
-    widget->setMinimumSize(200,200);    
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    QCheckBox *cb = new QCheckBox(widget);
-    cb->setText("David de Almeida Ferreira");
-    layout->addWidget(cb);
-    parent->addPage(widget, "About", icon());    
+    QFont font;
+    font.setBold ( true );
+    font.setWeight ( 75 );
+    lbVersionNumber->setFont ( font );
+
+
+    QLabel * lbDescricao = new QLabel ( widget );
+    lbDescricao->setText("KeyLEDs, is a mini application (plasmoid) for KDE 4.x, is a small application to install panels in the plasma to observing the state of CAPS LOCK and NUM LOCK.");
+    lbDescricao->setGeometry ( QRect ( 20, 60, 441, 101 ) );
+    lbDescricao->setTextFormat ( Qt::PlainText );
+    lbDescricao->setAlignment ( Qt::AlignJustify|Qt::AlignTop );
+    lbDescricao->setWordWrap ( true );
+
+    QLabel * lbCopyright = new QLabel ( widget );
+    lbCopyright->setText("Copyright (C) 2010-2011  David de Almeida Ferreira");
+    lbCopyright->setGeometry ( QRect ( 20, 200, 451, 20 ) );
+
+    QLabel * lbLicense = new QLabel ( widget );
+    lbLicense->setText("KeyLEDs is free software; GPL v.3");
+    lbLicense->setGeometry ( QRect ( 20, 170, 301, 20 ) );
+
+    KUrlLabel * lburl = new KUrlLabel ( widget );
+    lburl->setText ( "http://software.dukitan.com/en/keyleds/" );
+    lburl->setUrl ( "http://software.dukitan.com/en/keyleds/" );
+    lburl->setGeometry ( QRect ( 20, 230, 351, 20 ) );
+    lburl->setOpenExternalLinks ( true );
+
+    parent->addPage ( widget, "About" );    
     
 //Config
     widget = new QWidget();
-    widget->setMinimumSize(200,200);
-    QGroupBox * groupBox = new QGroupBox(widget);
-    groupBox->setTitle("Leds Align");
-    groupBox->setGeometry(QRect(20, 10, 251, 91));
-    rbAlignVertical = new QRadioButton(groupBox);
-    rbAlignVertical->setText("Vertical");
-    rbAlignVertical->setGeometry(QRect(20, 20, 101, 23));
-    QRadioButton * rbAlignHorizontal = new QRadioButton(groupBox);
-    rbAlignHorizontal->setText("Horizontal");
-    rbAlignHorizontal->setGeometry(QRect(20, 50, 101, 23));
+    widget->resize ( 477, 285 );
+    widget->setMinimumSize ( QSize ( 477, 285 ) );
+    
+    QGroupBox * groupBox = new QGroupBox ( widget );
+    groupBox->setMinimumSize(QSize(301, 101));    
+    groupBox->setTitle ( "Leds Align" );
+    groupBox->setGeometry(QRect(50, 20, 301, 121));    
+    rbAlignVertical = new QRadioButton ( groupBox );
+    rbAlignVertical->setText ( "Vertical" );
+    rbAlignVertical->setGeometry ( QRect(20, 40, 130, 21) );
+    rbAlignVertical->setChecked(true);    
+    QRadioButton * rbAlignHorizontal = new QRadioButton ( groupBox );
+    rbAlignHorizontal->setText ( "Horizontal" );
+    rbAlignHorizontal->setGeometry ( QRect(20, 70, 130, 21) );
+	
+    QGroupBox * groupBox_2 = new QGroupBox ( widget );
+    groupBox_2->setMinimumSize(QSize(301, 101));    
+    groupBox_2->setTitle ( "Font Size" );
+    groupBox_2->setGeometry ( QRect ( 50, 160, 301, 81 ) );
+    spinBox = new QSpinBox ( groupBox_2 );
+    spinBox->setGeometry ( QRect ( 30, 30, 55, 27 ) );
+    spinBox->setMinimum ( 4 );
+    spinBox->setMaximum ( 40 );
+    spinBox->setValue ( 8 );
 
-    QGroupBox * groupBox_2 = new QGroupBox(widget);
-    groupBox_2->setTitle("Font Size");
-    groupBox_2->setGeometry(QRect(20, 110, 251, 80));
-    spinBox = new QSpinBox(groupBox_2);
-    spinBox->setGeometry(QRect(30, 30, 55, 27));
-    spinBox->setMinimum(4);
-    spinBox->setMaximum(40);
-    spinBox->setValue(8);
+    QObject::connect ( spinBox, SIGNAL ( valueChanged ( int ) ), this, SLOT ( getFontSize() ) );
+    QObject::connect ( rbAlignVertical, SIGNAL ( clicked ( bool ) ), this, SLOT ( setAlign() ) );
+    QObject::connect ( rbAlignHorizontal, SIGNAL ( clicked ( bool ) ), this, SLOT ( setAlign() ) );
 
-    QObject::connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(getFontSize()));
-    QObject::connect(rbAlignVertical, SIGNAL(clicked(bool)), this, SLOT(setAlign()));
-    QObject::connect(rbAlignHorizontal, SIGNAL(clicked(bool)), this, SLOT(setAlign()));
-
-    parent->addPage(widget, "Config", icon());
+    parent->addPage ( widget, "Config", icon() );
 }
 
 
@@ -155,17 +176,17 @@ void KeyLEDs::paintInterface ( QPainter *p,
     int flags1;
     int flags2;
 
-    if (alignVertical) {
-        rect1 = new QRect(contentsRect.x(),contentsRect.y(),contentsRect.width(),contentsRect.height());
-        rect2 = new QRect(contentsRect.x(),contentsRect.y(),contentsRect.width(),contentsRect.height());
+    if ( alignVertical ) {
+        rect1 = new QRect ( contentsRect.x(),contentsRect.y(),contentsRect.width(),contentsRect.height() );
+        rect2 = new QRect ( contentsRect.x(),contentsRect.y(),contentsRect.width(),contentsRect.height() );
 
         flags1 = Qt::AlignTop | Qt::AlignHCenter | Qt::AlignJustify;
         flags2 = Qt::AlignBottom | Qt::AlignHCenter | Qt::AlignJustify;
 
     } else {
-        int tmp = contentsRect.width()/2;
-        rect1 = new QRect(contentsRect.x(),contentsRect.y(),tmp,contentsRect.height());
-        rect2 = new QRect(tmp,contentsRect.y(),tmp,contentsRect.height());
+        int tmp = contentsRect.width() /2;
+        rect1 = new QRect ( contentsRect.x(),contentsRect.y(),tmp,contentsRect.height() );
+        rect2 = new QRect ( tmp,contentsRect.y(),tmp,contentsRect.height() );
 
         flags1 = Qt::AlignCenter | Qt::AlignHCenter | Qt::AlignJustify;
         flags2 = flags1;
@@ -236,14 +257,13 @@ void KeyLEDs::updateLEDStatus() {
     update();
 }
 
-void KeyLEDs::getFontSize()
-{
+void KeyLEDs::getFontSize() {
     fontSize = spinBox->value();
     update();
 }
 
 void KeyLEDs::setAlign() {
-    if (rbAlignVertical->isChecked()) {
+    if ( rbAlignVertical->isChecked() ) {
         alignVertical=true;
     } else {
         alignVertical=false;
