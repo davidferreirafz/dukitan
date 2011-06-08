@@ -24,54 +24,75 @@
 * License.                                                                  *
 *                                                                           *
 *****************************************************************************/
-// Here we avoid loading the header multiple times
-#ifndef KEYLEDS_HEADER
-#define KEYLEDS_HEADER
-// We need the Plasma Applet headers
-#include <KIcon>
 
-#include <QSpinBox>
-#include <QRadioButton>
-#include <Plasma/Applet>
-#include <Plasma/Svg>
+
 
 #include "ledstatus.h"
-#include "dialogabout.h"
-#include "dialogconfig.h"
-#include "singletonstate.h"
 
-class QSizeF;
+LedStatus::LedStatus() {
+    capsLock = false;
+    numLock  = false;
+}
 
-// Define our plasma Applet
-class KeyLEDs : public Plasma::Applet {
-        Q_OBJECT
-    public:
-        KeyLEDs ( QObject *parent, const QVariantList &args );
-        ~KeyLEDs();
-        void paintInterface ( QPainter *painter,
-                              const QStyleOptionGraphicsItem *option,
-                              const QRect& contentsRect );
-        void init();
-        void createConfigurationInterface ( KConfigDialog* parent );
+LedStatus::~LedStatus() {
 
-        static QString DISPLAY_CAPS_LOCK;
-        static QString DISPLAY_NUM_LOCK;
-	
-    public slots:
-        void updateLEDStatus();
-        void setFontSize();
-        void setAlign();
+}
 
-    private:
-        SingletonState * state;
+void LedStatus::setLedCapsLockState ( QString buffer ) {
+    textCapsLock = getLedState ( "Caps Lock:",buffer );
 
-        LedStatus ledStatus;
+    if ( textCapsLock.compare ( "on" ) ==0 ) {
+        capsLock=true;
+    } else {
+        capsLock=false;
+    }
+}
 
-        DialogAbout * dialogAbout;
-        DialogConfig * dialogConfig;
+void LedStatus::setLedNumLockState ( QString buffer ) {
+    textNumLock = getLedState ( "Num Lock:",buffer );
 
-};
+    if ( textNumLock.compare ( "on" ) ==0 ) {
+        numLock=true;
+    } else {
+        numLock=false;
+    }
+}
 
-// This is the command that links your applet to the .desktop file
-K_EXPORT_PLASMA_APPLET ( keyleds, KeyLEDs )
-#endif
+QString LedStatus::getLedState ( QString ledName,QString buffer ) {
+    int initialPosition = buffer.indexOf ( ledName ) +ledName.size();
+
+    QString text = buffer.mid ( initialPosition );
+    text = text.simplified();
+
+    int finalPosition = text.indexOf ( ":" )-2;
+
+    text = text.mid ( 0,finalPosition );
+    text = text.simplified();
+
+    return text;
+}
+
+void LedStatus::update ( QObject *instance ) {
+    QProcess cmd ( instance );
+
+    cmd.start ( "xset -q | grep Caps" );
+    cmd.waitForFinished();
+
+    QTextStream in ( cmd.readAllStandardOutput() );
+    QString line = in.readAll();
+
+    // remove any extraneous characters
+    line = line.simplified();
+
+    setLedCapsLockState ( line );
+    setLedNumLockState ( line );
+}
+
+bool LedStatus::isCapsLock() {
+    return capsLock;
+}
+
+bool LedStatus::isNumLock() {
+    return numLock;
+}
+
