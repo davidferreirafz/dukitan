@@ -24,54 +24,35 @@
 * License.                                                                  *
 *                                                                           *
 *****************************************************************************/
-// Here we avoid loading the header multiple times
-#ifndef KEYLEDS_HEADER
-#define KEYLEDS_HEADER
-// We need the Plasma Applet headers
-#include <KIcon>
 
-#include <QSpinBox>
-#include <QRadioButton>
-#include <Plasma/Applet>
-#include <Plasma/Svg>
+#include <QString>
+#include <QTextStream>
+#include <QProcess>
+#include <QObject>
 
-#include "ledstatus.h"
-#include "dialogabout.h"
-#include "dialogconfig.h"
-#include "singletonstate.h"
+#ifndef LEDSTATUS_H
+#define LEDSTATUS_H
 
-class QSizeF;
+class LedStatus {
 
-// Define our plasma Applet
-class KeyLEDs : public Plasma::Applet {
-        Q_OBJECT
     public:
-        KeyLEDs ( QObject *parent, const QVariantList &args );
-        ~KeyLEDs();
-        void paintInterface ( QPainter *painter,
-                              const QStyleOptionGraphicsItem *option,
-                              const QRect& contentsRect );
-        void init();
-        void createConfigurationInterface ( KConfigDialog* parent );
+        LedStatus();
+        virtual ~LedStatus();
+        void update ( QObject *instance );
 
-        static QString DISPLAY_CAPS_LOCK;
-        static QString DISPLAY_NUM_LOCK;
-	
-    public slots:
-        void updateLEDStatus();
-        void setFontSize();
-        void setAlign();
+        bool isCapsLock();
+        bool isNumLock();
 
     private:
-        SingletonState * state;
+        QString textCapsLock;
+        QString textNumLock;
 
-        LedStatus ledStatus;
+        bool capsLock;
+        bool numLock;
 
-        DialogAbout * dialogAbout;
-        DialogConfig * dialogConfig;
-
+        void setLedCapsLockState ( QString buffer );
+        void setLedNumLockState ( QString buffer );
+        QString getLedState ( QString ledName,QString buffer );
 };
 
-// This is the command that links your applet to the .desktop file
-K_EXPORT_PLASMA_APPLET ( keyleds, KeyLEDs )
-#endif
+#endif // LEDSTATUS_H
