@@ -5,6 +5,7 @@ project(plasma-keyleds)
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 
+
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(
    ${CMAKE_SOURCE_DIR}
@@ -13,7 +14,10 @@ include_directories(
    )
 
 # We add our source code here
-set(keyleds_SRCS source/keyleds.cpp)
+set(keyleds_SRCS source/singletonstate.cpp source/dialogconfig.cpp source/dialogabout.cpp source/ledstatus.cpp source/keyleds.cpp)
+
+# Adicionado por David - FZ
+kde4_add_ui_files(keyleds_SRCS source/ui/DialogAbout.ui source/ui/DialogConfig.ui)
 
 # Now make sure all files get to the right place
 kde4_add_plugin(plasma_applet_keyleds ${keyleds_SRCS})
