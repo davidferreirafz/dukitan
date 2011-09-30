@@ -8,9 +8,6 @@ var DukItanUsherUrl = {
   onMenuItemCommand: function(e) {
   var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                                   .getService(Components.interfaces.nsIPromptService);
-    //promptService.alert(window, this.strings.getString("helloMessageTitle"),
-    //                          this.strings.getString("helloMessage"));
-
 
     var urlOriginal  = gURLBar.value;
     var url          = "";
@@ -20,17 +17,14 @@ var DukItanUsherUrl = {
     var tamanho      = urlTemp.length;
     var urlPadrao    = ["http",".com",".net",".org"];
     var urlOriginalI = -1;
-
     
-    if (var i=0; i<urlPadrao.length; i++){
-
-      alert("procurando");
+    for (var i=0; i<urlPadrao.length; i++){
+		
       if (urlOriginal.indexOf(urlPadrao[i])>-1){
-        
+		  
         urlOriginalI = i;
-        alert("achou"+i);
         break;
-        
+		
       }
       
     }
