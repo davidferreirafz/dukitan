@@ -1,7 +1,0 @@
-content   DukItanUsherUrl                 chrome/content/
-skin      DukItanUsherUrl   classic/1.0   chrome/skin/
-locale    DukItanUsherUrl   en-US         chrome/locale/en-US/
-
-
-overlay   chrome://browser/content/browser.xul   chrome://DukItanUsherUrl/content/ff-overlay.xul
-style chrome://global/content/customizeToolbar.xul chrome://DukItanUsherUrl/skin/overlay.css
