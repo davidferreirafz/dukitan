@@ -1,0 +1,22 @@
+/* This is just an example.  You shouldn't do this. */
+#DukItanUsherUrl-hello
+{
+  color: red ! important;
+}
+#DukItanUsherUrl-toolbar-button
+{
+  list-style-image: url("chrome://DukItanUsherUrl/skin/toolbar-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#DukItanUsherUrl-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #DukItanUsherUrl-toolbar-button
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #DukItanUsherUrl-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}
