@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>duu@dukitan.com</em:id>
+    <em:type>2</em:type>
+    <em:name>DUU: DukItan Usher Url</em:name>
+    <em:version>1.5</em:version>
+    <em:creator>David de Almeida Ferreira - FZ</em:creator>
+    <em:contributor></em:contributor>
+    <em:description>It is a tool to fix the URL, allowing easy navigation and direct.
+
+Its operation is simple, by pressing the button
+1. The Url bar is analyzed;
+2. If a redirect Url detected it is removed;
+3. If a Url is reversed it fixed;
+4. The browser will be redirected to the Url found;
+
+[Português Brasileiro]
+É uma ferramenta para corrigir a url, permitindo uma navegação simples e direta.
+
+Seu funcionamento é simples, ao acionarmos o botão
+1. A Url na barra é analisada;
+2. Se for detectada uma Url de redirecionamento a mesma é removida;
+3. Se houver uma Url invertida a mesma é corrigida;
+4. O navegador será encaminhado para a url encontrada;</em:description>
+    <em:homepageURL>http://software.dukitan.com/en/usherurl</em:homepageURL>
+    <em:aboutURL>chrome://DukItanUsherUrl/content/about.xul</em:aboutURL>
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
+        <em:minVersion>6.0</em:minVersion>
+        <em:maxVersion>7.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>

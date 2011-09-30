@@ -1,0 +1,19 @@
+It is a tool to fix the URL, allowing easy navigation and direct.
+
+Its operation is simple, by pressing the button
+1. The Url bar is analyzed;
+2. If a redirect Url detected it is removed;
+3. If a Url is reversed it fixed;
+4. The browser will be redirected to the Url found;
+
+[Português Brasileiro]
+É uma ferramenta para corrigir a url, permitindo uma navegação simples e direta.
+
+Seu funcionamento é simples, ao acionarmos o botão
+1. A Url na barra é analisada;
+2. Se for detectada uma Url de redirecionamento a mesma é removida;
+3. Se houver uma Url invertida a mesma é corrigida;
+4. O navegador será encaminhado para a url encontrada;
+
+
+DukItan Usher Url

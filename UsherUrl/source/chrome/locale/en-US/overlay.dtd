@@ -1,0 +1,8 @@
+<!ENTITY DukItanUsherUrl.label "Usher Url">
+<!ENTITY DukItanUsherUrlContext.label "Usher Url">
+<!ENTITY DukItanUsherUrlContext.accesskey "U">
+<!ENTITY DukItanUsherUrlToolbarButton.label "Usher Url">
+<!ENTITY DukItanUsherUrlToolbarButton.tooltip "DUU: DukItan Usher Url">
+<!ENTITY DukItanUsherUrlSidebar.label "DUU: Usher Url Sidebar">
+<!ENTITY DukItanUsherUrlToolbar.name  "dukitan-usher-url">
+<!ENTITY DukItanUsherUrlToolbar.label "DUU: DukItan Usher Url">
