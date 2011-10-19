@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -14,11 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.dukitan.android.fzpong.entidade.Bola;
-import com.dukitan.android.fzpong.entidade.CPU;
-import com.dukitan.android.fzpong.entidade.Parede;
 import com.dukitan.android.fzpong.entidade.Raquete;
+import com.dukitan.android.fzpong.entidade.RaqueteCPU;
 import com.dukitan.android.fzpong.entidade.RaqueteJogador;
-import com.dukitan.android.math.Vector2D;
 
 public class GameView extends View implements Runnable {
 
@@ -57,24 +54,26 @@ public class GameView extends View implements Runnable {
 		sprites = BitmapFactory.decodeResource(getResources(),
 				R.drawable.sprites);
 
-	
 		pB = new Paint();
 		pB.setColor(Color.WHITE);
 
-		Vector2D normal = new Vector2D(0, -1);
-		Rect r = new Rect(0, 0, background.getWidth(), 6);
-		manager.add(new Parede(r, normal));
+		/*
+		 * Vector2D normal = new Vector2D(0, -1); Rect r = new Rect(0, 0,
+		 * background.getWidth(), 6); manager.add(new Parede(r, normal));
+		 * 
+		 * normal = new Vector2D(0, 1);// ou inverter r = new Rect(0,
+		 * background.getHeight() - 6, background.getWidth(),
+		 * background.getHeight()); manager.add(new Parede(r, normal));
+		 */
 
-		normal = new Vector2D(0, 1);// ou inverter
-		r = new Rect(0, background.getHeight() - 6, background.getWidth(),
-				background.getHeight());
-		manager.add(new Parede(r, normal));
+		raqueteCPU = new RaqueteCPU(sprites);
+		raqueteCPU.setPosicao(0, 200);
 
-		raqueteCPU = new CPU(sprites);
 		raqueteJogador = new RaqueteJogador(sprites);
+		raqueteJogador.setPosicao(784, 200);
 
 		bola = new Bola(sprites);
-		bola.setPosicao(400,200);
+		bola.setPosicao(400, 200);
 	}
 
 	// F6 + F2
@@ -86,7 +85,7 @@ public class GameView extends View implements Runnable {
 		raqueteCPU.draw(canvas);
 		raqueteJogador.draw(canvas);
 		bola.draw(canvas);
-		
+
 		// manager.draw(canvas);
 		canvas.drawText("w:" + String.valueOf(getWidth()), getWidth() - 80, 10,
 				pB);
