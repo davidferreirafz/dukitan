@@ -1,0 +1,34 @@
+Ação emulada 	Botão no teclado
+Home 	HOME
+Menu 	F2 ou Page-up button
+Star 	Shift-F2 ou Page Down
+Back 	ESC
+Call/dial 	F3
+Hangup/end call 	F4
+Search 	F5
+Power (lock device) 	F7
+Audio volume up 	KEYPAD_PLUS, Ctrl-5
+Audio volume down 	KEYPAD_MINUS, Ctrl-F6
+Camera 	Ctrl-KEYPAD_5, Ctrl-F3
+Mudar para orientação anterior 	KEYPAD_7, Ctrl-F11
+Mudar para proxima orientação 	KEYPAD_9, Ctrl-F12
+Toggle cell networking on/off 	F8
+Toggle code profiling 	F9 (apenas se iniciado com -trace)
+Toggle modo fullscreen 	Alt-Enter
+Toggle modo trackball 	F6
+Modo trackball (Enquanto pressionado) 	Delete
+DPad left/up/right/down 	KEYPAD_4/8/6/2
+DPad center click 	KEYPAD_5
+Onion alpha increase/decrease 	KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)
+
+PS: Para usar os valores do keypad é preciso desligar o NumLock.
+
+As ações mais utilizadas são (pelo menos por mim):
+
+    KEYPAD_7 ou KEYPAD_9 para mudar orientação.
+    HOME para voltar para home.
+    ESC que é o botão “return”
+    F2 que é o botão “opções”
+    Direcionais do teclado fisico (presente em alguns devices), KEYPADS 2, 4, 8 e 6
+    Touchs na tela são emulados com o mouse
+    TrackBall segurar DEL e mover o mouse
