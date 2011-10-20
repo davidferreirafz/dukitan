@@ -6,14 +6,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-public class FZPongActivity extends Activity {
+public class FZPongActivity extends Activity
+{
     /** Called when the activity is first created. */
 
-    GameView view;
+    GameView        view;
     private Handler guiRefresher;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -26,7 +28,8 @@ public class FZPongActivity extends Activity {
         view = (GameView) findViewById(R.id.gameView1);
 
         guiRefresher = new Handler() {
-            public void handleMessage(Message msg) {
+            public void handleMessage(Message msg)
+            {
                 if (msg.what == 1) {
                     view.invalidate();
                 }
@@ -39,6 +42,12 @@ public class FZPongActivity extends Activity {
         Thread t = new Thread(view);
         t.setDaemon(true);
         t.start();
+    }
+
+    @Override
+    public void finish()
+    {
+        super.finish();
     }
 
 }

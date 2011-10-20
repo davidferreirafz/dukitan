@@ -7,17 +7,20 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public abstract class Raquete extends Bloqueavel {
+public abstract class Raquete extends Bloqueavel
+{
 
-    final public static int LADO_ESQUERDO = 0;
-    final public static int LADO_DIREITO = 784;
+    final public static int LADO_ESQUERDO = 0 + 28;
+    final public static int LADO_DIREITO  = 800 - 28;
 
-    public Raquete(Rect rect, Bitmap imagem, Vector2D vetor) {
+    public Raquete(Rect rect, Bitmap imagem, Vector2D vetor)
+    {
         super(rect, imagem, vetor);
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas)
+    {
         canvas.save();
         sprite.draw((int) posicao.getX(), (int) posicao.getY(), canvas);
         canvas.restore();
