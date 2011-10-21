@@ -10,21 +10,19 @@ import com.dukitan.android.framework.Input;
 import com.dukitan.android.fzpong.entidade.Bloqueavel;
 import com.dukitan.android.math.Vector2D;
 
-public class Parede extends Bloqueavel
-{
+public class Parede extends Bloqueavel {
     private Paint wallPaint;
 
-    public Parede(Rect bounds, Bitmap imagem, Vector2D vetor)
-    {
-        super(bounds, imagem, vetor);
+
+    public Parede(Rect bounds, Bitmap imagem, Vector2D normal) {
+        super(bounds, imagem, normal);
 
         wallPaint = new Paint();
         wallPaint.setColor(Color.GRAY);
     }
 
     @Override
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
         canvas.save();
         canvas.drawRect(getArea(), wallPaint);
         canvas.restore();
@@ -32,8 +30,9 @@ public class Parede extends Bloqueavel
     }
 
     @Override
-    public void update(Input input)
-    {
+    public void update(Input input) {
     }
+
+
 
 }

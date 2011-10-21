@@ -29,6 +29,9 @@ public class GameView extends View implements Runnable
 
     private EntidadeManager manager;
     private Input           input;
+    
+    final static private int SCREEN_WIDTH = 800;
+    final static private int SCREEN_HEIGHT = 480;
 
     public GameView(Context context)
     {
@@ -48,23 +51,16 @@ public class GameView extends View implements Runnable
         init();
     }
 
-    private void init()
+    public void init()
     {
         input = new Input();
 
         manager = EntidadeManager.getInstance();
+        manager.clear();
 
         background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 
         sprites = BitmapFactory.decodeResource(getResources(), R.drawable.sprites);
-
-        Parede pT = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, 1));
-        pT.setPosicao(0, 0);
-        manager.add(pT);
-
-        Parede pB = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, -1));
-        pB.setPosicao(0, 470);
-        manager.add(pB);
 
         Parede pL = new Parede(new Rect(0, 0, 10, 480), null, new Vector2D(1, 0));
         pL.setPosicao(0, 0);
@@ -73,17 +69,25 @@ public class GameView extends View implements Runnable
         Parede pR = new Parede(new Rect(0, 0, 10, 480), null, new Vector2D(-1, 0));
         pR.setPosicao(790, 0);
         manager.add(pR);
+        
+        Parede pT = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, 1));
+        pT.setPosicao(0, 0);
+        manager.add(pT);
+
+        Parede pB = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, -1));
+        pB.setPosicao(0, 470);
+        manager.add(pB);
 
         Raquete raqueteCPU = new RaqueteCPU(sprites);
-        raqueteCPU.setPosicao(0, 400);
+        raqueteCPU.setPosicao(Raquete.LADO_ESQUERDO, SCREEN_HEIGHT/2-Raquete.CENTRO_VERTICAL);        
         manager.add(raqueteCPU);
 
         Raquete raqueteJogador = new RaqueteJogador(sprites);
-        raqueteJogador.setPosicao(Raquete.LADO_DIREITO, 240);
+        raqueteJogador.setPosicao(Raquete.LADO_DIREITO, SCREEN_HEIGHT/2-Raquete.CENTRO_VERTICAL);
         manager.add(raqueteJogador);
 
         Bola bola = new Bola(sprites);
-        bola.setPosicao(Raquete.LADO_ESQUERDO, 200);
+        bola.setPosicao(400,240);
         manager.add(bola);
     }
 
@@ -120,7 +124,8 @@ public class GameView extends View implements Runnable
     {
         this.handler = guiRefresher;
     }
-
+    
+    @Override
     public boolean onTouchEvent(MotionEvent evt)
     {
         input.setMotionEvent(evt);
@@ -128,13 +133,20 @@ public class GameView extends View implements Runnable
         return super.onTouchEvent(evt);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent msg)
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        
+        input.setKeyEvent(event);
+        
+        return super.onKeyUp(keyCode, event);
+    }
+    
+    @Override    
+    public boolean onKeyDown(int keyCode, KeyEvent event)
     {
-        input.setKeyEvent(msg);
+        input.setKeyEvent(event);
 
-        // if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-
-        return super.onKeyDown(keyCode, msg);
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

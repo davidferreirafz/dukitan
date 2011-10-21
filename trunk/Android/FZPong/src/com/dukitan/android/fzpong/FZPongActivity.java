@@ -12,17 +12,13 @@ public class FZPongActivity extends Activity
 
     GameView        view;
     private Handler guiRefresher;
+    Thread t;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle state)
     {
-        super.onCreate(savedInstanceState);
-
+        super.onCreate(state);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        setContentView(R.layout.main);
-
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         view = (GameView) findViewById(R.id.gameView1);
@@ -39,15 +35,15 @@ public class FZPongActivity extends Activity
 
         view.setCallbackHandler(guiRefresher);
 
-        Thread t = new Thread(view);
+        t = new Thread(view);
         t.setDaemon(true);
         t.start();
     }
-
+    
     @Override
-    public void finish()
-    {
-        super.finish();
+    protected void onPause() {
+        super.onPause();
     }
+
 
 }

@@ -12,6 +12,8 @@ public abstract class Raquete extends Bloqueavel
 
     final public static int LADO_ESQUERDO = 0 + 28;
     final public static int LADO_DIREITO  = 800 - 28;
+    final public static int CENTRO_VERTICAL= 40;
+    final public static int CENTRO_HORIZONTAL= 40;    
 
     public Raquete(Rect rect, Bitmap imagem, Vector2D vetor)
     {
