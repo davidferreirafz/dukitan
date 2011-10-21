@@ -12,13 +12,15 @@ import com.dukitan.android.math.Vector2D;
 
 public class Bola extends Entidade
 {
+    public static final int CENTRO_VERTICAL = 10;
+    public static final int CENTRO_HORIZONTAL = 10;
     private Vector2D dir;
-    private float    speed = 1.2f;
+    private float    speed = 4f;
 
     public Bola(Bitmap imagem)
     {
         super(new Rect(0, 0, 20, 20), imagem);
-        dir = new Vector2D(1, 0);
+        dir = new Vector2D(1, 1);
     }
 
     @Override
@@ -49,7 +51,11 @@ public class Bola extends Entidade
                     // dir = dir.minus(n.multiply(2).multiply(dir.dot(n)));
 
                     // dir.minusMe(n);
-                    dir = n;
+                    // r = v-2 * v.dot(n) * n
+                    dir = dir.minus(n.multiply(2).multiply(dir.dot(n)));
+                    //dir = n;
+                    
+                    break;
                 }
             }
         }

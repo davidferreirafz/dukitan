@@ -9,10 +9,10 @@ public abstract class Bloqueavel extends Entidade
 {
     private Vector2D normal;
 
-    public Bloqueavel(Rect bounds, Bitmap imagem, Vector2D vetor)
+    public Bloqueavel(Rect bounds, Bitmap imagem, Vector2D normal)
     {
         super(bounds, imagem);
-        this.normal = vetor;
+        this.normal = normal;
     }
 
     public void setNormal(Vector2D normal)

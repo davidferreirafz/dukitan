@@ -8,6 +8,7 @@ public class Input
     private MotionEvent motion;
     private KeyEvent    key;
 
+
     public Input()
     {
         motion = null;
@@ -46,6 +47,7 @@ public class Input
 
     public boolean isKey(int keyCode)
     {
-        return key.getKeyCode() == keyCode;
+        return this.key.getKeyCode() == keyCode;
     }
+
 }
