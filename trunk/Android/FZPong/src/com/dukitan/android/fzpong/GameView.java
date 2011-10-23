@@ -149,7 +149,6 @@ public class GameView extends View implements Runnable
         
         input.setKeyEvent(event);
         
-        
         return super.onKeyUp(keyCode, event);
     }
     
@@ -159,8 +158,6 @@ public class GameView extends View implements Runnable
         input.setKeyEvent(event);
         
         if (keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
-            View v = findViewById(R.id.adView);
-            v.setVisibility(INVISIBLE);
             Log.i("FZPong", "Down"+ String.valueOf(keyCode));
         } else {
             Log.i("FZPong", String.valueOf(keyCode));
