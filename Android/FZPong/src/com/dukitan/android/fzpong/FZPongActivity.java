@@ -5,27 +5,28 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 
-public class FZPongActivity extends Activity
-{
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
+public class FZPongActivity extends Activity {
     /** Called when the activity is first created. */
 
-    GameView        view;
+    GameView view;
+    AdView adView;
     private Handler guiRefresher;
-    Thread t;
 
     @Override
-    public void onCreate(Bundle state)
-    {
+    public void onCreate(Bundle state) {
         super.onCreate(state);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.main);
 
-        view = (GameView) findViewById(R.id.gameView1);
+        view = (GameView) findViewById(R.id.gameView);
 
         guiRefresher = new Handler() {
-            public void handleMessage(Message msg)
-            {
+            public void handleMessage(Message msg) {
                 if (msg.what == 1) {
                     view.invalidate();
                 }
@@ -35,15 +36,18 @@ public class FZPongActivity extends Activity
 
         view.setCallbackHandler(guiRefresher);
 
-        t = new Thread(view);
+        Thread t = new Thread(view);
         t.setDaemon(true);
         t.start();
-    }
-    
-    @Override
-    protected void onPause() {
-        super.onPause();
+
+        adView = (AdView) this.findViewById(R.id.adView);
+
     }
 
+    public void onDestroy() {
+        // adView.destroy();
+
+        super.onDestroy();
+    }
 
 }

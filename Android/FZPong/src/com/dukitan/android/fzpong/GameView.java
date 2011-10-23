@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.dukitan.android.fzpong.entidade.raquete.Raquete;
 import com.dukitan.android.fzpong.entidade.raquete.RaqueteCPU;
 import com.dukitan.android.fzpong.entidade.raquete.RaqueteJogador;
 import com.dukitan.android.math.Vector2D;
+import com.google.ads.AdView;
 
 public class GameView extends View implements Runnable
 {
@@ -29,6 +31,7 @@ public class GameView extends View implements Runnable
 
     private EntidadeManager manager;
     private Input           input;
+    private View adView;
     
     final static private int SCREEN_WIDTH = 800;
     final static private int SCREEN_HEIGHT = 480;
@@ -52,7 +55,7 @@ public class GameView extends View implements Runnable
     }
 
     public void init()
-    {
+    {        
         input = new Input();
 
         manager = EntidadeManager.getInstance();
@@ -89,6 +92,9 @@ public class GameView extends View implements Runnable
         Bola bola = new Bola(sprites);
         bola.setPosicao(400,240);
         manager.add(bola);
+        
+        adView = (AdView) findViewById(R.id.include2);
+           
     }
 
     // F6 + F2
@@ -130,6 +136,11 @@ public class GameView extends View implements Runnable
     {
         input.setMotionEvent(evt);
 
+        //if (adView.getVisibility()==View.VISIBLE){
+           // adView.setVisibility(View.INVISIBLE);
+        //}
+
+        
         return super.onTouchEvent(evt);
     }
 
@@ -138,6 +149,7 @@ public class GameView extends View implements Runnable
         
         input.setKeyEvent(event);
         
+        
         return super.onKeyUp(keyCode, event);
     }
     
@@ -145,6 +157,14 @@ public class GameView extends View implements Runnable
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         input.setKeyEvent(event);
+        
+        if (keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
+            View v = findViewById(R.id.adView);
+            v.setVisibility(INVISIBLE);
+            Log.i("FZPong", "Down"+ String.valueOf(keyCode));
+        } else {
+            Log.i("FZPong", String.valueOf(keyCode));
+        }
 
         return super.onKeyDown(keyCode, event);
     }
