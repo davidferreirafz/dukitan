@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	<com.dukitan.android.fzpong.GameView
-		android:id="@+id/gameView1" android:layout_height="wrap_content" android:layout_width="wrap_content">
-		</com.dukitan.android.fzpong.GameView>
-</LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="top" >
+               
+        <include
+            android:id="@+id/include1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            layout="@layout/screen" />
+
+        <include
+            android:id="@+id/include2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            layout="@layout/admob" />
+        
+    </RelativeLayout>

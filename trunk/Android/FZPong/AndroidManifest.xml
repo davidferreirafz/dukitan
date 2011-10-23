@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.dukitan.android.fzpong"
-      android:versionCode="1"
-      android:versionName="1.0">
+    package="com.dukitan.android.fzpong"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
     <uses-sdk android:minSdkVersion="7" />
-    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="true"></uses-feature>
-    <uses-configuration android:reqNavigation="dpad" android:reqTouchScreen="finger"></uses-configuration>   
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:debuggable="true">
-        <activity android:name=".FZPongActivity"
-                  android:label="@string/app_name" android:screenOrientation="landscape" android:launchMode="singleTop">
-            <intent-filter>
+
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch"
+        android:required="true" >
+    </uses-feature>
+
+    <uses-configuration
+        android:reqNavigation="dpad"
+        android:reqTouchScreen="finger" >
+    </uses-configuration>
+
+    <application
+        android:debuggable="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+
+        
+        <activity
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:name=".FZPongActivity"
+            android:screenOrientation="landscape" android:configChanges="touchscreen|orientation|screenLayout">
+            <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity android:name="com.google.ads.AdActivity"
+             android:screenOrientation="landscape" 
+              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"/>
+          
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 </manifest>
