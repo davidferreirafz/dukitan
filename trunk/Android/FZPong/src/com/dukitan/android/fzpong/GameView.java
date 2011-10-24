@@ -1,183 +1,92 @@
 package com.dukitan.android.fzpong;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
-import com.dukitan.android.framework.Input;
-import com.dukitan.android.fzpong.entidade.bola.Bola;
-import com.dukitan.android.fzpong.entidade.parede.Parede;
-import com.dukitan.android.fzpong.entidade.raquete.Raquete;
-import com.dukitan.android.fzpong.entidade.raquete.RaqueteCPU;
-import com.dukitan.android.fzpong.entidade.raquete.RaqueteJogador;
-import com.dukitan.android.math.Vector2D;
-import com.google.ads.AdView;
-
-public class GameView extends View implements Runnable
+public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
 
-    private Handler         handler;
-    private Bitmap          background;
-    private Bitmap          sprites;
-
-    private EntidadeManager manager;
-    private Input           input;
-    private View adView;
-    
-    final static private int SCREEN_WIDTH = 800;
-    final static private int SCREEN_HEIGHT = 480;
-
-    public GameView(Context context)
-    {
-        super(context);
-        init();
-    }
+    private View     adView;
+    private Controle thread;
 
     public GameView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
-        init();
+
+        SurfaceHolder holder = getHolder();
+        holder.addCallback(this);
+
+        // create thread only; it's started in surfaceCreated()
+        thread = new Controle(holder, context, new Handler() {
+            @Override
+            public void handleMessage(Message m)
+            {
+                // mStatusText.setVisibility(m.getData().getInt("viz"));
+                // mStatusText.setText(m.getData().getString("text"));
+            }
+        });
+
+        setFocusable(true); // make sure we get key events
+
     }
 
-    public GameView(Context context, AttributeSet attrs, int defStyle)
+
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
     {
-        super(context, attrs, defStyle);
-        init();
+        thread.setSurfaceSize(width, height);
     }
 
-    public void init()
-    {        
-        input = new Input();
-
-        manager = EntidadeManager.getInstance();
-        manager.clear();
-
-        background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
-
-        sprites = BitmapFactory.decodeResource(getResources(), R.drawable.sprites);
-
-        Parede pL = new Parede(new Rect(0, 0, 10, 480), null, new Vector2D(1, 0));
-        pL.setPosicao(0, 0);
-        manager.add(pL);
-
-        Parede pR = new Parede(new Rect(0, 0, 10, 480), null, new Vector2D(-1, 0));
-        pR.setPosicao(790, 0);
-        manager.add(pR);
-        
-        Parede pT = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, 1));
-        pT.setPosicao(0, 0);
-        manager.add(pT);
-
-        Parede pB = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, -1));
-        pB.setPosicao(0, 470);
-        manager.add(pB);
-
-        Raquete raqueteCPU = new RaqueteCPU(sprites);
-        raqueteCPU.setPosicao(Raquete.LADO_ESQUERDO, SCREEN_HEIGHT/2-Raquete.CENTRO_VERTICAL);        
-        manager.add(raqueteCPU);
-
-        Raquete raqueteJogador = new RaqueteJogador(sprites);
-        raqueteJogador.setPosicao(Raquete.LADO_DIREITO, SCREEN_HEIGHT/2-Raquete.CENTRO_VERTICAL);
-        manager.add(raqueteJogador);
-
-        Bola bola = new Bola(sprites);
-        bola.setPosicao(400,240);
-        manager.add(bola);
-        
-        adView = (AdView) findViewById(R.id.include2);
-           
-    }
-
-    // F6 + F2
-    public void onDraw(Canvas canvas)
+    public void surfaceCreated(SurfaceHolder holder)
     {
-        canvas.save();
-
-        canvas.drawBitmap(background, 0, 0, null);
-
-        manager.draw(canvas);
-
-        canvas.restore();
+        thread.setRunning(true);
+        thread.start();
     }
 
-    public void run()
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus)
     {
-        while (true) {
+        if (!hasWindowFocus)
+            thread.pause();
+    }
+
+    public void surfaceDestroyed(SurfaceHolder holder)
+    {
+        boolean retry = true;
+        thread.setRunning(false);
+        while (retry) {
             try {
-                manager.update(input);
-
-                // invalidate();
-                Message msg = new Message();
-                msg.what = 1;
-                handler.sendMessage(msg);
-
-                Thread.sleep(10);
-            } catch (Exception e) {
+                thread.join();
+                retry = false;
+            } catch (InterruptedException e) {
             }
         }
     }
 
-    public void setCallbackHandler(Handler guiRefresher)
-    {
-        this.handler = guiRefresher;
-    }
-    
     @Override
-    public boolean onTouchEvent(MotionEvent evt)
-    {
-        input.setMotionEvent(evt);
-
-        //if (adView.getVisibility()==View.VISIBLE){
-           // adView.setVisibility(View.INVISIBLE);
-        //}
-
-        
-        return super.onTouchEvent(evt);
-    }
-
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        
-        input.setKeyEvent(event);
-        
-        return super.onKeyUp(keyCode, event);
-    }
-    
-    @Override    
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
-        input.setKeyEvent(event);
-        
-        if (keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
-            Log.i("FZPong", "Down"+ String.valueOf(keyCode));
-        } else {
-            Log.i("FZPong", String.valueOf(keyCode));
-        }
-
-        return super.onKeyDown(keyCode, event);
+       return thread.doKeyDown(keyCode, event);
     }
 
+    
     @Override
-    protected void finalize() throws Throwable
+    public boolean onTouchEvent(MotionEvent event)
     {
-        super.finalize();
-
-        handler = null;
-        background = null;
-        sprites = null;
-
-        input = null;
-
-        manager.clear();
-        manager = null;
+        thread.onTouchEvent(event);
+        
+        return true;
     }
+    
+    public Controle getThread()
+    {
+        return thread;
+    }
+
 }
