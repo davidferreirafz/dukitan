@@ -39,11 +39,11 @@ public class FZPongActivity extends Activity {
         
         if (savedInstanceState == null) {
             // we were just launched: set up a new game
-            //mLunarThread.setState(LunarThread.STATE_READY);
+            controle.setState(Controle.STATE_READY);
            // Log.w(this.getClass().getName(), "SIS is null");
         } else {
             // we are being restored: resume a previous game
-            //mLunarThread.restoreState(savedInstanceState);
+            controle.restoreState(savedInstanceState);
             //Log.w(this.getClass().getName(), "SIS is nonnull");
         }        
 
