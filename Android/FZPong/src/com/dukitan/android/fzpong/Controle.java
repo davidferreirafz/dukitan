@@ -102,8 +102,6 @@ public class Controle extends Thread
         bola.setPosicao(400, 240);
         manager.add(bola);
         
-        //provisorio
-        mMode = STATE_RUNNING;
     }
 
     public void setState(int mode)
