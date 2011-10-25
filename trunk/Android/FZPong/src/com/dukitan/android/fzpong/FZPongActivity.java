@@ -5,24 +5,18 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class FZPongActivity extends Activity {
-
-    private static final int MENU_PAUSE = 1;
-
-    private static final int MENU_RESUME = 2;
-
-    private static final int MENU_START = 3;
-
-    private static final int MENU_STOP = 4;
-
+public class FZPongActivity extends Activity
+{
     private GameView view;
 
     private Controle controle;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.main);
@@ -43,48 +37,45 @@ public class FZPongActivity extends Activity {
 
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        menu.add(0, MENU_START, 0, R.string.menu_start);
-        menu.add(0, MENU_STOP, 0, R.string.menu_stop);
-        menu.add(0, MENU_PAUSE, 0, R.string.menu_pause);
-        menu.add(0, MENU_RESUME, 0, R.string.menu_resume);
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.game_menu, menu);
 
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         switch (item.getItemId()) {
-        case MENU_START:
-            controle.doStart();
-            return true;
-        case MENU_STOP:
-            controle.setState(Controle.STATE_LOSE, getText(R.string.message_stopped));
-            return true;
-        case MENU_PAUSE:
-            controle.pause();
-            return true;
-        case MENU_RESUME:
-            controle.unpause();
-            return true;
+            case R.id.menu_start:
+                controle.doStart();
+                return true;
+            case R.id.menu_stop:
+                controle.setState(Controle.STATE_LOSE, getText(R.string.message_stopped));
+                return true;
+            case R.id.menu_pause:
+                controle.pause();
+                return true;
+            case R.id.menu_resume:
+                controle.unpause();
+                return true;
         }
 
         return false;
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         controle.pause();
-        //view.getThread().pause(); // pause game when Activity pauses
     }
 
-    protected void onSaveInstanceState(Bundle outState) {
-        // just have the View's thread save its state into our Bundle
+    protected void onSaveInstanceState(Bundle outState)
+    {
         super.onSaveInstanceState(outState);
         controle.saveState(outState);
-        Log.w(this.getClass().getName(), "SIS called");
     }
 
 }
