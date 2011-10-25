@@ -14,7 +14,7 @@ public class Bola extends Entidade {
     public static final int CENTRO_VERTICAL = 10;
     public static final int CENTRO_HORIZONTAL = 10;
     private Vector2D dir;
-    private float speed = 4f;
+    private float speed = 100f;
 
     public Bola(Bitmap imagem) {
         super(new Rect(0, 0, 20, 20), imagem);
@@ -28,8 +28,8 @@ public class Bola extends Entidade {
         canvas.restore();
     }
 
-    private void move() {
-        posicao = posicao.plusMe(dir.multiply(speed));
+    private void move(double elapsed) {
+        posicao = posicao.plusMe(dir.multiply((float)(speed*elapsed)));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Bola extends Entidade {
                 }
             }
         }
-        move();
+        move(input.getTime());
 
     }
 

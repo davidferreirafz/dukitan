@@ -1,13 +1,5 @@
 package com.dukitan.android.fzpong;
 
-import com.dukitan.android.framework.Input;
-import com.dukitan.android.fzpong.entidade.bola.Bola;
-import com.dukitan.android.fzpong.entidade.parede.Parede;
-import com.dukitan.android.fzpong.entidade.raquete.Raquete;
-import com.dukitan.android.fzpong.entidade.raquete.RaqueteCPU;
-import com.dukitan.android.fzpong.entidade.raquete.RaqueteJogador;
-import com.dukitan.android.math.Vector2D;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -23,43 +15,50 @@ import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.TextView;
 
-public class Controle extends Thread
-{
+import com.dukitan.android.framework.Input;
+import com.dukitan.android.fzpong.entidade.bola.Bola;
+import com.dukitan.android.fzpong.entidade.parede.Parede;
+import com.dukitan.android.fzpong.entidade.raquete.Raquete;
+import com.dukitan.android.fzpong.entidade.raquete.RaqueteCPU;
+import com.dukitan.android.fzpong.entidade.raquete.RaqueteJogador;
+import com.dukitan.android.math.Vector2D;
+
+public class Controle extends Thread {
 
     /*
      * State-tracking constants
      */
-    public static final int  STATE_LOSE    = 1;
-    public static final int  STATE_PAUSE   = 2;
-    public static final int  STATE_READY   = 3;
-    public static final int  STATE_RUNNING = 4;
-    public static final int  STATE_WIN     = 5;
+    public static final int STATE_LOSE = 1;
+    public static final int STATE_PAUSE = 2;
+    public static final int STATE_READY = 3;
+    public static final int STATE_RUNNING = 4;
+    public static final int STATE_WIN = 5;
 
-    final static private int SCREEN_WIDTH  = 800;
+    final static private int SCREEN_WIDTH = 800;
     final static private int SCREEN_HEIGHT = 480;
 
-    private SurfaceHolder    mSurfaceHolder;
-    private Handler          mHandler;
-    private Context          mContext;
+    private SurfaceHolder mSurfaceHolder;
+    private Handler mHandler;
+    private Context mContext;
 
-    private Bitmap           background;
-    private Bitmap           sprites;
-    private Input            input;
+    private Bitmap background;
+    private Bitmap sprites;
+    private Input input;
 
-    private EntidadeManager  manager;
-    private long             mLastTime;
+    private EntidadeManager manager;
+    private long mLastTime;
 
     /** The state of the game. One of READY, RUNNING, PAUSE, LOSE, or WIN */
-    private int              mMode;
+    private int mMode;
 
     /** Indicate whether the surface has been created & is ready to draw */
-    private boolean          mRun          = false;
-    
-    /** Pointer to the text view to display "Paused.." etc. */
-    public TextView mStatusText;    
+    private boolean mRun = false;
 
-    public Controle(SurfaceHolder surfaceHolder, Context context, Handler handler)
-    {
+    /** Pointer to the text view to display "Paused.." etc. */
+    public TextView mStatusText;
+    private View adView;
+
+    public Controle(SurfaceHolder surfaceHolder, Context context, Handler handler) {
         mSurfaceHolder = surfaceHolder;
         mHandler = handler;
         mContext = context;
@@ -101,11 +100,10 @@ public class Controle extends Thread
         Bola bola = new Bola(sprites);
         bola.setPosicao(400, 240);
         manager.add(bola);
-        
+
     }
 
-    public void setState(int mode)
-    {
+    public void setState(int mode) {
         synchronized (mSurfaceHolder) {
             setState(mode, null);
         }
@@ -120,8 +118,7 @@ public class Controle extends Thread
      * @param message
      *            string to add to screen or null
      */
-    public void setState(int mode, CharSequence message)
-    {
+    public void setState(int mode, CharSequence message) {
         /*
          * This method optionally can cause a text message to be displayed to
          * the user when the mode changes. Since the View that actually renders
@@ -140,18 +137,23 @@ public class Controle extends Thread
                 b.putInt("viz", View.INVISIBLE);
                 msg.setData(b);
                 mHandler.sendMessage(msg);
+                adView.setVisibility(View.INVISIBLE);
             } else {
 
                 Resources res = mContext.getResources();
                 CharSequence str = "";
-                if (mMode == STATE_READY)
+                if (mMode == STATE_READY) {
                     str = res.getText(R.string.mode_ready);
-                else if (mMode == STATE_PAUSE)
+                    adView.setVisibility(View.VISIBLE);
+                } else if (mMode == STATE_PAUSE) {
                     str = res.getText(R.string.mode_pause);
-                else if (mMode == STATE_LOSE)
+                    adView.setVisibility(View.VISIBLE);
+                } else if (mMode == STATE_LOSE) {
                     str = res.getText(R.string.mode_lose);
-                else if (mMode == STATE_WIN)
+                    adView.setVisibility(View.VISIBLE);
+                } else if (mMode == STATE_WIN) {
                     str = res.getString(R.string.mode_win_prefix) + res.getString(R.string.mode_win_suffix);
+                }
 
                 if (message != null) {
                     str = message + "\n" + str;
@@ -167,8 +169,7 @@ public class Controle extends Thread
         }
     }
 
-    public void doStart()
-    {
+    public void doStart() {
         synchronized (mSurfaceHolder) {
             mLastTime = System.currentTimeMillis() + 100;
             setState(STATE_RUNNING);
@@ -178,8 +179,7 @@ public class Controle extends Thread
     /**
      * Pauses the physics update & animation.
      */
-    public void pause()
-    {
+    public void pause() {
         synchronized (mSurfaceHolder) {
             if (mMode == STATE_RUNNING) {
                 setState(STATE_PAUSE);
@@ -194,16 +194,14 @@ public class Controle extends Thread
      * @param savedState
      *            Bundle containing the game state
      */
-    public synchronized void restoreState(Bundle savedState)
-    {
+    public synchronized void restoreState(Bundle savedState) {
         synchronized (mSurfaceHolder) {
             setState(STATE_PAUSE);
         }
     }
 
     @Override
-    public void run()
-    {
+    public void run() {
         while (mRun) {
             Canvas c = null;
             try {
@@ -231,9 +229,9 @@ public class Controle extends Thread
             }
         }
         return map;
-    }    
-    private void doDraw(Canvas canvas)
-    {
+    }
+
+    private void doDraw(Canvas canvas) {
         // Draw the background image. Operations on the Canvas accumulate
         // so this is like clearing the screen.
         canvas.drawBitmap(background, 0, 0, null);
@@ -248,8 +246,7 @@ public class Controle extends Thread
      * realtime. Does not invalidate(). Called at the start of draw(). Detects
      * the end-of-game and sets the UI to the next state.
      */
-    private void updatePhysics()
-    {
+    private void updatePhysics() {
         long now = System.currentTimeMillis();
 
         // Do nothing if mLastTime is in the future.
@@ -260,6 +257,7 @@ public class Controle extends Thread
 
         double elapsed = (now - mLastTime) / 1000.0;
 
+        input.setTime(elapsed);
         manager.update(input);
 
         mLastTime = now;
@@ -267,8 +265,7 @@ public class Controle extends Thread
     }
 
     /* Callback invoked when the surface dimensions change. */
-    public void setSurfaceSize(int width, int height)
-    {
+    public void setSurfaceSize(int width, int height) {
         // synchronized to make sure these all change atomically
         synchronized (mSurfaceHolder) {
             // para mudar background
@@ -278,8 +275,7 @@ public class Controle extends Thread
     /**
      * Resumes from a pause.
      */
-    public void unpause()
-    {
+    public void unpause() {
         // Move the real time clock up to now
         synchronized (mSurfaceHolder) {
             mLastTime = System.currentTimeMillis() + 100;
@@ -287,14 +283,33 @@ public class Controle extends Thread
         setState(STATE_RUNNING);
     }
 
-    
-    public boolean onTouchEvent(MotionEvent event)
-    {
-//        return super.onTouchEvent(event);
-        input.setMotionEvent(event);
-        
-        return true;
-    }    
+    public boolean doTouchEvent(MotionEvent event) {
+
+        synchronized (mSurfaceHolder) {
+            boolean okStart = false;
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                okStart = true;
+            }
+
+            if (okStart && (mMode == STATE_READY || mMode == STATE_LOSE || mMode == STATE_WIN)) {
+                // ready-to-start -> start
+                doStart();
+                return true;
+            } else if (mMode == STATE_PAUSE && okStart) {
+                // paused -> running
+                unpause();
+                return true;
+            } else if (mMode == STATE_RUNNING) {
+                input.setMotionEvent(event);
+                return true;
+            }
+
+            return false;
+        }
+
+    }
+
     /**
      * Handles a key-down event.
      * 
@@ -304,8 +319,7 @@ public class Controle extends Thread
      *            the original event object
      * @return true
      */
-    boolean doKeyDown(int keyCode, KeyEvent msg)
-    {
+    boolean doKeyDown(int keyCode, KeyEvent msg) {
         synchronized (mSurfaceHolder) {
             boolean okStart = false;
             if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
@@ -335,7 +349,6 @@ public class Controle extends Thread
         }
     }
 
-
     /**
      * Used to signal the thread whether it should be running or not. Passing
      * true allows the thread to run; passing false will shut it down if it's
@@ -345,9 +358,12 @@ public class Controle extends Thread
      * @param b
      *            true to run, false to shut down
      */
-    public void setRunning(boolean b)
-    {
+    public void setRunning(boolean b) {
         mRun = b;
+    }
+
+    public void setAdView(View adView) {
+        this.adView = adView;
     }
 
 }
