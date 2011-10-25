@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.dukitan.android.framework.Input;
-import com.dukitan.android.fzpong.EntidadeManager;
-import com.dukitan.android.fzpong.entidade.Entidade;
 import com.dukitan.android.fzpong.entidade.Bloqueavel;
+import com.dukitan.android.fzpong.entidade.Entidade;
+import com.dukitan.android.fzpong.entidade.EntidadeManager;
 import com.dukitan.android.math.Vector2D;
 
 public class Bola extends Entidade {
