@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_start"
+        android:title="@string/menu_start" android:menuCategory="system"/>
+
+    <item
+        android:id="@+id/menu_stop"
+        android:title="@string/menu_stop" android:menuCategory="system"/>
+
+    <item
+        android:id="@+id/menu_pause"
+        android:title="@string/menu_pause" android:menuCategory="system"/>
+
+    <item
+        android:id="@+id/menu_resume"
+        android:title="@string/menu_resume" android:menuCategory="system"/>
+
+</menu>
