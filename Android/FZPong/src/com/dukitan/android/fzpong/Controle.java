@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dukitan.android.framework.Input;
+import com.dukitan.android.fzpong.entidade.EntidadeManager;
 import com.dukitan.android.fzpong.entidade.bola.Bola;
 import com.dukitan.android.fzpong.entidade.parede.Parede;
 import com.dukitan.android.fzpong.entidade.raquete.Raquete;

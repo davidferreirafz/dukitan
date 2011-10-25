@@ -76,7 +76,8 @@ public class FZPongActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        view.getThread().pause(); // pause game when Activity pauses
+        controle.pause();
+        //view.getThread().pause(); // pause game when Activity pauses
     }
 
     protected void onSaveInstanceState(Bundle outState) {

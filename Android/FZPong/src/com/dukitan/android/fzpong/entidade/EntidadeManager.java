@@ -1,4 +1,4 @@
-package com.dukitan.android.fzpong;
+package com.dukitan.android.fzpong.entidade;
 
 import java.util.ArrayList;
 import java.util.List;
