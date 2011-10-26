@@ -22,8 +22,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread = new Controle(holder, context, new Handler() {
             @Override
             public void handleMessage(Message m) {
-                // mStatusText.setVisibility(m.getData().getInt("viz"));
-                // mStatusText.setText(m.getData().getString("text"));
+                thread.setMessage(m);
+
             }
         });
 

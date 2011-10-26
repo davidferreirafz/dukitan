@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-public class FZPongActivity extends Activity {
+public class FZPongActivity extends Activity
+{
     private GameView view;
 
     private Controle controle;
@@ -17,7 +19,8 @@ public class FZPongActivity extends Activity {
      * criando a atividade.
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.main);
@@ -25,6 +28,7 @@ public class FZPongActivity extends Activity {
         view = (GameView) findViewById(R.id.gameView);
         controle = view.getThread();
         controle.setAdView(findViewById(R.id.adView));
+        controle.setTextView((TextView) findViewById(R.id.statusMessage));
 
         if (savedInstanceState == null) {
             controle.setState(Controle.STATE_READY);
@@ -36,7 +40,8 @@ public class FZPongActivity extends Activity {
 
     // A atividade está para se tornar visível
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
     }
 
@@ -47,50 +52,56 @@ public class FZPongActivity extends Activity {
      * destruída).
      */
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
     }
 
     // Outra atividade está ganhando o foco (está em modo "paused").
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         controle.doPause();
     }
 
     // A atividade não está mais visível (está "stopped")
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
     }
 
     // A atividade está para ser destruída.
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.game_menu, menu);
 
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         switch (item.getItemId()) {
-        case R.id.menu_start:
-            controle.doStart();
-            return true;
-        case R.id.menu_stop:
-            controle.setState(Controle.STATE_LOSE, getText(R.string.message_stopped));
-            return true;
-        case R.id.menu_pause:
-            controle.doPause();
-            return true;
-        case R.id.menu_resume:
-            controle.unpause();
-            return true;
+            case R.id.menu_start:
+                controle.doStart();
+                return true;
+            case R.id.menu_stop:
+                controle.doStop();
+                return true;
+            case R.id.menu_pause:
+                controle.doPause();
+                return true;
+            case R.id.menu_resume:
+                controle.doResume();
+                return true;
         }
 
         return false;
@@ -98,7 +109,8 @@ public class FZPongActivity extends Activity {
 
     // Salvando o estado da Ativade
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState)
+    {
         super.onSaveInstanceState(outState);
         controle.saveState(outState);
     }

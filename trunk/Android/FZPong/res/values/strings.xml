@@ -12,11 +12,11 @@
     <string name="menu_credit">Credit</string>
     
     
-    <string name="mode_ready">Lunar Lander\nPress Up To Play</string>
-	<string name="mode_pause">Paused\nPress Up To Resume</string>
-	<string name="mode_lose">Game Over\nPress Up To Play</string>
-	<string name="mode_win_prefix">Success!\n</string> 
-	<string name="mode_win_suffix">in a row\nPress Up to Play</string> 
+    <string name="mode_ready">FZPong. Touch To Play</string>
+	<string name="mode_pause">Paused. Touch To Resume</string>
+	<string name="mode_lose">Game Over. Touch To Play</string>
+	<string name="mode_win_prefix">Success!</string> 
+	<string name="mode_win_suffix">in a row\nTouch to Play</string> 
 	
 	<string name="message_stopped">Stopped</string>
 	<string name="message_off_pad">Off Landing Pad</string> 

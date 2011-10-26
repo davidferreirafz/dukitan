@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
-        <com.dukitan.android.fzpong.GameView
-            android:id="@+id/gameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </com.dukitan.android.fzpong.GameView>
-</LinearLayout>
+    <com.dukitan.android.fzpong.GameView
+        android:id="@+id/gameView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </com.dukitan.android.fzpong.GameView>
+
+    <EditText
+        android:id="@+id/statusMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:gravity="center"
+        android:inputType="text"
+        android:singleLine="false"
+        android:text="@string/app_name"
+        android:textSize="24sp"
+        android:visibility="visible" />
+
+</RelativeLayout>

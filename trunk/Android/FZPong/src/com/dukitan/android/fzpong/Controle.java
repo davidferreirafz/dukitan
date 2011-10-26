@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.widget.TextView;
 
 import com.dukitan.android.framework.ControlAdMob;
 import com.dukitan.android.framework.Input;
@@ -32,9 +31,6 @@ public class Controle extends ControlAdMob
     private Input            input;
 
     private EntidadeManager  manager;
-
-    /** Pointer to the text view to display "Paused.." etc. */
-    public TextView          mStatusText;
 
     public Controle(SurfaceHolder surfaceHolder, Context context, Handler handler)
     {
@@ -77,6 +73,7 @@ public class Controle extends ControlAdMob
         Bola bola = new Bola(sprites);
         bola.setPosicao(400, 240);
         manager.add(bola);
+
     }
 
     protected void draw(Canvas canvas)
@@ -107,7 +104,7 @@ public class Controle extends ControlAdMob
                 return true;
             } else if (getMode() == STATE_PAUSE && okStart) {
                 // paused -> running
-                unpause();
+                doResume();
                 return true;
             } else if (getMode() == STATE_RUNNING) {
                 input.setMotionEvent(event);
@@ -117,4 +114,5 @@ public class Controle extends ControlAdMob
             return false;
         }
     }
+
 }
