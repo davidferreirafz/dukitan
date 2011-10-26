@@ -143,7 +143,7 @@ public abstract class ControlThread extends Thread
     /**
      * Pauses the physics update & animation.
      */
-    public void pause()
+    public void doPause()
     {
         synchronized (mSurfaceHolder) {
             if (mMode == STATE_RUNNING) {
