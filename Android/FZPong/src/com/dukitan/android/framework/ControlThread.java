@@ -5,7 +5,10 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.SurfaceHolder;
+import android.view.View;
+import android.widget.TextView;
 
 import com.dukitan.android.fzpong.R;
 
@@ -33,11 +36,20 @@ public abstract class ControlThread extends Thread
     /** The state of the game. One of READY, RUNNING, PAUSE, LOSE, or WIN */
     private int             mMode;
 
+    /** Pointer to the text view to display "Paused.." etc. */
+    protected TextView      statusMessage;
+
     public ControlThread(SurfaceHolder surfaceHolder, Context context, Handler handler)
     {
         mSurfaceHolder = surfaceHolder;
         mHandler = handler;
         mContext = context;
+
+    }
+
+    public void setTextView(TextView textView)
+    {
+        statusMessage = textView;
     }
 
     public void setState(int mode)
@@ -70,12 +82,14 @@ public abstract class ControlThread extends Thread
             mMode = mode;
 
             if (mMode == STATE_RUNNING) {
-                /*
-                 * Message msg = mHandler.obtainMessage(); Bundle b = new
-                 * Bundle(); b.putString("text", ""); b.putInt("viz",
-                 * View.INVISIBLE); msg.setData(b); mHandler.sendMessage(msg);
-                 * //adView.setVisibility(View.INVISIBLE);
-                 */
+
+                Message msg = mHandler.obtainMessage();
+                Bundle b = new Bundle();
+                b.putString("text", "");
+                b.putInt("viz", View.INVISIBLE);
+                msg.setData(b);
+                mHandler.sendMessage(msg);
+
                 entryStateRunning();
             } else {
 
@@ -83,15 +97,12 @@ public abstract class ControlThread extends Thread
                 CharSequence str = "";
                 if (mMode == STATE_READY) {
                     str = res.getText(R.string.mode_ready);
-                    // adView.setVisibility(View.VISIBLE);
                     entryStateReady();
                 } else if (mMode == STATE_PAUSE) {
                     str = res.getText(R.string.mode_pause);
-                    // adView.setVisibility(View.VISIBLE);
                     entryStatePause();
                 } else if (mMode == STATE_LOSE) {
                     str = res.getText(R.string.mode_lose);
-                    // adView.setVisibility(View.VISIBLE);
                     entryStateLose();
                 } else if (mMode == STATE_WIN) {
                     // str = res.getString(R.string.mode_win_prefix) +
@@ -102,12 +113,14 @@ public abstract class ControlThread extends Thread
                 if (message != null) {
                     str = message + "\n" + str;
                 }
-                /*
-                 * Message msg = mHandler.obtainMessage(); Bundle b = new
-                 * Bundle(); b.putString("text", str.toString());
-                 * b.putInt("viz", View.VISIBLE); msg.setData(b);
-                 * mHandler.sendMessage(msg);
-                 */
+
+                Message msg = mHandler.obtainMessage();
+                Bundle b = new Bundle();
+                b.putString("text", str.toString());
+                b.putInt("viz", View.VISIBLE);
+                msg.setData(b);
+                mHandler.sendMessage(msg);
+
             }
         }
     }
@@ -155,13 +168,24 @@ public abstract class ControlThread extends Thread
     /**
      * Resumes from a pause.
      */
-    public void unpause()
+    public void doResume()
     {
         // Move the real time clock up to now
         synchronized (mSurfaceHolder) {
             mLastTime = System.currentTimeMillis() + 100;
         }
         setState(STATE_RUNNING);
+    }
+
+    /**
+     * Resumes from a pause.
+     */
+    public void doStop()
+    {
+        synchronized (mSurfaceHolder) {
+            setState(STATE_LOSE);
+        }
+
     }
 
     /**
@@ -270,8 +294,15 @@ public abstract class ControlThread extends Thread
     protected void onSaveState(Bundle map)
     {
     }
-    
-    protected int getMode(){
+
+    protected int getMode()
+    {
         return mMode;
+    }
+
+    public void setMessage(Message message)
+    {
+        statusMessage.setVisibility(message.getData().getInt("viz"));
+        statusMessage.setText(message.getData().getString("text"));
     }
 }
