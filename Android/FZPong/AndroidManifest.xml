@@ -36,10 +36,7 @@
         </activity>
          <activity android:name="com.google.ads.AdActivity"
              android:screenOrientation="landscape" 
-              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"/>
-         <activity android:name=".screen.About"></activity>
-         <activity android:name=".screen.Credit"></activity>
-         <activity android:name=".screen.Help"></activity>         
+              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"/>         
           
     </application>
 
