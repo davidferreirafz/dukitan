@@ -1,12 +1,17 @@
 package com.dukitan.android.fzpong;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.dukitan.android.fzpong.screen.About;
+import com.dukitan.android.fzpong.screen.Credit;
+import com.dukitan.android.fzpong.screen.Help;
 
 public class FZPongActivity extends Activity
 {
@@ -89,19 +94,35 @@ public class FZPongActivity extends Activity
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        Intent i;
+        
         switch (item.getItemId()) {
             case R.id.menu_start:
                 controle.doStart();
+                return true;          
+            case R.id.menu_about:
+                controle.doPause();                
+                i = new Intent();
+                i.setClass(this, About.class);
+                startActivity(i);
+                
+
                 return true;
-            case R.id.menu_stop:
-                controle.doStop();
+            case R.id.menu_help:
+
+                controle.doPause();                
+                i = new Intent();
+                i.setClass(this, Help.class);
+                startActivity(i);                
+
                 return true;
-            case R.id.menu_pause:
+            case R.id.menu_credit:
                 controle.doPause();
-                return true;
-            case R.id.menu_resume:
-                controle.doResume();
-                return true;
+                
+                i = new Intent();
+                i.setClass(this, Credit.class);
+                startActivity(i);                
+                return true;           
         }
 
         return false;

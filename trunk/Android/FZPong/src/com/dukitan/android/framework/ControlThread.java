@@ -172,9 +172,12 @@ public abstract class ControlThread extends Thread
     {
         // Move the real time clock up to now
         synchronized (mSurfaceHolder) {
-            mLastTime = System.currentTimeMillis() + 100;
+            if (mMode == STATE_PAUSE) {
+                mLastTime = System.currentTimeMillis() + 100;                
+                setState(STATE_RUNNING);               
+            }            
+
         }
-        setState(STATE_RUNNING);
     }
 
     /**
