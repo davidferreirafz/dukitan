@@ -1,0 +1,16 @@
+O arquivo DukItan_Code_Profile.xml é um arquivo de configuração para
+formatação de código fonte para ser utilizado no Eclipse.
+
+Para importar vá no menu:
+
+Window > Preferences
+
+Ao abrir a janela de preferências, navegue no treeview nos itens:
+
+Java > Code Style > Formatter
+
+1.Clique no botão "Import...",
+2.Selecione o arquivo de profile
+3.Na combobox selecione o profile DukItan
+
+
