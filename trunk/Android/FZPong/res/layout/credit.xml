@@ -12,11 +12,11 @@
             android:layout_weight="0.94"
             android:ellipsize="middle"
             android:gravity="center"
-            android:text="@string/screenCredit"
+            android:text="@string/dialogCreditText"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/button_ok"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="onClick"            

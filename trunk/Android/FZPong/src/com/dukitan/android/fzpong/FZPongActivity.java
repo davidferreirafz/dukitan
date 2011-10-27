@@ -1,17 +1,15 @@
 package com.dukitan.android.fzpong;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import com.dukitan.android.fzpong.screen.About;
-import com.dukitan.android.fzpong.screen.Credit;
-import com.dukitan.android.fzpong.screen.Help;
 
 public class FZPongActivity extends Activity
 {
@@ -94,35 +92,28 @@ public class FZPongActivity extends Activity
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        Intent i;
-        
         switch (item.getItemId()) {
             case R.id.menu_start:
                 controle.doStart();
-                return true;          
+                return true;
+
             case R.id.menu_about:
-                controle.doPause();                
-                i = new Intent();
-                i.setClass(this, About.class);
-                startActivity(i);
-                
+                controle.doPause();
+                showCustomDialog(R.layout.about, R.string.dialogAboutTitle);
 
                 return true;
+
             case R.id.menu_help:
-
-                controle.doPause();                
-                i = new Intent();
-                i.setClass(this, Help.class);
-                startActivity(i);                
+                controle.doPause();
+                showCustomDialog(R.layout.help, R.string.dialogHelpTitle);
 
                 return true;
+
             case R.id.menu_credit:
                 controle.doPause();
-                
-                i = new Intent();
-                i.setClass(this, Credit.class);
-                startActivity(i);                
-                return true;           
+                showCustomDialog(R.layout.credit, R.string.dialogHelpTitle);
+
+                return true;
         }
 
         return false;
@@ -134,6 +125,27 @@ public class FZPongActivity extends Activity
     {
         super.onSaveInstanceState(outState);
         controle.saveState(outState);
+    }
+
+    private void showCustomDialog(int layoutResID, int titleResID)
+    {
+
+        final Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(layoutResID);
+
+        dialog.setTitle(titleResID);
+
+        final Button ok = (Button) dialog.findViewById(R.id.button_ok);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 }
