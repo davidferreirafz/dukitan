@@ -21,23 +21,29 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-
-        
         <activity
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:name=".FZPongActivity"
-            android:screenOrientation="landscape" android:configChanges="touchscreen|orientation|screenLayout">
+            android:name="com.dukitan.android.framework.SplashScreen"
+            android:screenOrientation="landscape" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <activity android:name="com.google.ads.AdActivity"
-             android:screenOrientation="landscape" 
-              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"/>         
-          
+        <activity
+            android:configChanges="touchscreen|orientation|screenLayout"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:name=".FZPongActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"
+            android:name="com.google.ads.AdActivity"
+            android:screenOrientation="landscape" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -111,7 +111,7 @@ public class FZPongActivity extends Activity
 
             case R.id.menu_credit:
                 controle.doPause();
-                showCustomDialog(R.layout.credit, R.string.dialogHelpTitle);
+                showCustomDialog(R.layout.credit, R.string.dialogCreditTitle);
 
                 return true;
         }
@@ -135,7 +135,7 @@ public class FZPongActivity extends Activity
         dialog.setContentView(layoutResID);
 
         dialog.setTitle(titleResID);
-
+        
         final Button ok = (Button) dialog.findViewById(R.id.button_ok);
 
         ok.setOnClickListener(new View.OnClickListener() {
