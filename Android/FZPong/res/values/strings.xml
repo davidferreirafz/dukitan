@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, FZPongActivity!</string>
+
     <string name="app_name">FZPong</string>
-    
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_pause">Pause</string>
@@ -10,16 +9,18 @@
     <string name="menu_help">Help</string>
     <string name="menu_about">About</string>
     <string name="menu_credit">Credit</string>
-    
-    
     <string name="mode_ready">FZPong. Touch To Play</string>
-	<string name="mode_pause">Paused. Touch To Resume</string>
-	<string name="mode_lose">Game Over. Touch To Play</string>
-	<string name="mode_win_prefix">Success!</string> 
-	<string name="mode_win_suffix">in a row\nTouch to Play</string> 
-	
-	<string name="message_stopped">Stopped</string>
-	<string name="message_off_pad">Off Landing Pad</string> 
-	<string name="message_too_fast">Too Fast</string> 
-	<string name="message_bad_angle">Bad Angle</string>         
+    <string name="mode_pause">Paused. Touch To Resume</string>
+    <string name="mode_lose">Game Over. Touch To Play</string>
+    <string name="mode_win_prefix">Success!</string>
+    <string name="mode_win_suffix">in a row\nTouch to Play</string>
+    <string name="message_stopped">Stopped</string>
+    <string name="message_off_pad">Off Landing Pad</string>
+    <string name="message_too_fast">Too Fast</string>
+    <string name="message_bad_angle">Bad Angle</string>
+    <string name="screenAbout">FZPong [Game - Pong Clone]\n\nCopyright (C) 2007-2011\n\n by David Ferreira (DukItan Software &amp; Games)</string>
+    <string name="screenHelp">Controller\nArrows up and down to move the pad.\n\nRules\nWin the game who has the advantage of three matches.\nA match is won by an advantage of five points. If passing of the ten points, just an advantage of two points.</string>
+    <string name="screenCredit">Developer: David de Almeida Ferreira (FZ)\n\nE-Mail: davidferreira.fz@gmail.com\n\nSite: http://software.dukitan.com</string>
+    <string name="button_ok">Ok</string>
+
 </resources>

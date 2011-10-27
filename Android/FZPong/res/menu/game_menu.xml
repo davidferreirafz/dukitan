@@ -4,17 +4,16 @@
     <item
         android:id="@+id/menu_start"
         android:title="@string/menu_start" android:menuCategory="system"/>
+        
+    <item
+        android:id="@+id/menu_about"
+        android:title="@string/menu_about" android:menuCategory="system"/>        
 
     <item
-        android:id="@+id/menu_stop"
-        android:title="@string/menu_stop" android:menuCategory="system"/>
-
+        android:id="@+id/menu_help"
+        android:title="@string/menu_help" android:menuCategory="system"/> 
+        
     <item
-        android:id="@+id/menu_pause"
-        android:title="@string/menu_pause" android:menuCategory="system"/>
-
-    <item
-        android:id="@+id/menu_resume"
-        android:title="@string/menu_resume" android:menuCategory="system"/>
-
+        android:id="@+id/menu_credit"
+        android:title="@string/menu_credit" android:menuCategory="system"/>         
 </menu>
