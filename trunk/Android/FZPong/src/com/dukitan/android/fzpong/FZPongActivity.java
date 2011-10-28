@@ -32,7 +32,7 @@ public class FZPongActivity extends Activity
         controle = view.getThread();
         controle.setAdView(findViewById(R.id.adView));
         controle.setTextView((TextView) findViewById(R.id.statusMessage));
-
+       
         if (savedInstanceState == null) {
             controle.setState(Controle.STATE_READY);
         } else {
