@@ -1,3 +1,9 @@
+Resolução
+480x800 -> Tablet / Celular
+240x320 -> Celular
+
+-------------
+
 Ação emulada 	Botão no teclado
 Home 	HOME
 Menu 	F2 ou Page-up button
