@@ -43,7 +43,7 @@ public class SplashScreen extends Activity implements Runnable
         while (contagem < 100) {
             try {
                 handler.sendMessage(handler.obtainMessage());
-                Thread.sleep(50);
+                Thread.sleep(25);
             } catch (Throwable t) {
             }
         }

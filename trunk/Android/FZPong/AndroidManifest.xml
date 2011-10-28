@@ -11,9 +11,7 @@
         android:required="true" >
     </uses-feature>
 
-    <uses-configuration
-        android:reqNavigation="dpad"
-        android:reqTouchScreen="finger" >
+    <uses-configuration >
     </uses-configuration>
 
     <application

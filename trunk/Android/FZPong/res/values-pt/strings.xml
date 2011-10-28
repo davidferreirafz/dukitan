@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FZPong</string>
+    <string name="menu_start">Iniciar</string>
+    <string name="menu_stop">Parar</string>
+    <string name="menu_pause">Pausar</string>
+    <string name="menu_resume">Continuar</string>
+    <string name="menu_help">Ajuda</string>
+    <string name="menu_about">Sobre</string>
+    <string name="menu_credit">Crédito</string>
+    <string name="mode_ready">FZPong. Toque para Jogar</string>
+    <string name="mode_pause">Pausado. Toque para Continuar</string>
+    <string name="mode_lose">Game Over. Toque para Jogar</string>
+    <string name="dialogAboutText">FZPong [Game - Pong Clone]\n\nCopyright (C) 2007-2011\n\n by David Ferreira\n(DukItan Software &amp; Games)</string>
+    <string name="dialogHelpText">Regras\nGanha o jogo quem tiver a vantagem de três partidas.\nPara vencer uma partida, ganha aquele que tiver uma vantagem de cinco pontos.\nSe a pontuação ultrapassar os dez pontos, basta uma diferença de dois pontos.</string>
+    <string name="dialogCreditText">Desenvolvedor\nDavid de Almeida Ferreira (FZ)\n\nE-Mail\ndavidferreira.fz@gmail.com\n\nSite\nhttp://software.dukitan.com</string>
+    <string name="button_ok">Ok</string>
+    <string name="dialogAboutTitle">Sobre</string>
+    <string name="dialogHelpTitle">Ajuda</string>
+    <string name="dialogCreditTitle">Crédito</string>
+
+</resources>
