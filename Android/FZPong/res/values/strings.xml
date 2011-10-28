@@ -12,14 +12,8 @@
     <string name="mode_ready">FZPong. Touch To Play</string>
     <string name="mode_pause">Paused. Touch To Resume</string>
     <string name="mode_lose">Game Over. Touch To Play</string>
-    <string name="mode_win_prefix">Success!</string>
-    <string name="mode_win_suffix">in a row\nTouch to Play</string>
-    <string name="message_stopped">Stopped</string>
-    <string name="message_off_pad">Off Landing Pad</string>
-    <string name="message_too_fast">Too Fast</string>
-    <string name="message_bad_angle">Bad Angle</string>
     <string name="dialogAboutText">FZPong [Game - Pong Clone]\n\nCopyright (C) 2007-2011\n\n by David Ferreira\n(DukItan Software &amp; Games)</string>
-    <string name="dialogHelpText">Controller\n Touch in screen to move the pad.\n\nRules\n Win the game who has the advantage of three matches.\nA match is won by an advantage of five points. If passing of the ten points, just an advantage of two points.</string>
+    <string name="dialogHelpText">Rules\n Win the game who has the advantage of three matches.\nA match is won by an advantage of five points.\n If passing of the ten points, just an advantage of two points.</string>
     <string name="dialogCreditText">Developer\nDavid de Almeida Ferreira (FZ)\n\nE-Mail\ndavidferreira.fz@gmail.com\n\nSite\nhttp://software.dukitan.com</string>
     <string name="button_ok">Ok</string>
     <string name="dialogAboutTitle">About</string>
