@@ -23,7 +23,6 @@ import com.dukitan.android.math.Vector2D;
 
 public class Controle extends ControlAdMob
 {
-
     private Bitmap          background;
     private Bitmap          sprites;
     private Input           input;
@@ -37,7 +36,6 @@ public class Controle extends ControlAdMob
 
         res = context.getResources();
         input = new Input();
-
     }
 
     protected void entryStateLoading()
@@ -93,7 +91,7 @@ public class Controle extends ControlAdMob
         manager.update(input);
     }
 
-    public boolean doTouchEvent(MotionEvent event)
+    public boolean onTouchEvent(MotionEvent event)
     {
         synchronized (mSurfaceHolder) {
             boolean okStart = false;

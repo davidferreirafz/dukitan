@@ -26,15 +26,16 @@ public class FZPongActivity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Log.i(getClass().getName(),"onCreate");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.main);
 
         view = (GameView) findViewById(R.id.gameView);
-        controle = view.getThread();
+        controle = view.getControl();
         controle.setAdView(findViewById(R.id.adView));
         controle.setTextView((TextView) findViewById(R.id.statusMessage));
 
-        if (savedInstanceState == null) {            
+        if (savedInstanceState == null) {     
             //controle.setState(Controle.STATE_LOADING);
         } else {
             controle.restoreState(savedInstanceState);
@@ -47,6 +48,8 @@ public class FZPongActivity extends Activity
     protected void onStart()
     {
         super.onStart();
+        Log.i(getClass().getName(),"onStart");
+        view.onStart();
     }
 
     /*
@@ -56,6 +59,7 @@ public class FZPongActivity extends Activity
     protected void onResume()
     {
         super.onResume();
+        Log.i(getClass().getName(),"onResume");    
     }
 
     // Outra atividade está ganhando o foco (está em modo "paused").
@@ -63,8 +67,9 @@ public class FZPongActivity extends Activity
     protected void onPause()
     {
         super.onPause();
+        Log.i(getClass().getName(),"onPause");               
         view.onPause();
-        controle.doPause();
+        
     }
 
     // A atividade não está mais visível (está "stopped")
@@ -72,7 +77,8 @@ public class FZPongActivity extends Activity
     protected void onStop()
     {
         super.onStop();
-        controle.doStop();
+        Log.i(getClass().getName(),"onStop");  
+        view.onStop();
     }
 
     // A atividade está para ser destruída.
@@ -100,19 +106,16 @@ public class FZPongActivity extends Activity
             case R.id.menu_about:
                 controle.doPause();
                 showCustomDialog(R.layout.about, R.string.dialogAboutTitle);
-
                 return true;
 
             case R.id.menu_help:
                 controle.doPause();
                 showCustomDialog(R.layout.help, R.string.dialogHelpTitle);
-
                 return true;
 
             case R.id.menu_credit:
                 controle.doPause();
                 showCustomDialog(R.layout.credit, R.string.dialogCreditTitle);
-
                 return true;
         }
 
@@ -124,7 +127,7 @@ public class FZPongActivity extends Activity
     protected void onSaveInstanceState(Bundle outState)
     {
         super.onSaveInstanceState(outState);
-        controle.saveState(outState);
+        controle.onSaveInstanceState(outState);
     }
 
     private void showCustomDialog(int layoutResID, int titleResID)
