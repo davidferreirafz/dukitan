@@ -9,6 +9,7 @@
     <string name="menu_help">Ajuda</string>
     <string name="menu_about">Sobre</string>
     <string name="menu_credit">Crédito</string>
+    <string name="mode_load">Carregando</string>        
     <string name="mode_ready">FZPong. Toque para Jogar</string>
     <string name="mode_pause">Pausado. Toque para Continuar</string>
     <string name="mode_lose">Game Over. Toque para Jogar</string>
