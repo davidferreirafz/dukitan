@@ -20,5 +20,6 @@
     <string name="dialogAboutTitle">About</string>
     <string name="dialogHelpTitle">Help</string>
     <string name="dialogCreditTitle">Credit</string>
+    <string name="deviceNotSupported">Device not Supported</string>    
 
 </resources>

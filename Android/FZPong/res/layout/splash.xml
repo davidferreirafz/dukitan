@@ -13,6 +13,16 @@
         android:layout_weight="0.94"
         android:src="@drawable/splash" />
 
+    <TextView
+        android:id="@+id/deviceAlert"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:text="@string/deviceNotSupported"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:visibility="invisible" />
+
     <ProgressBar
         android:id="@+id/splashProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
