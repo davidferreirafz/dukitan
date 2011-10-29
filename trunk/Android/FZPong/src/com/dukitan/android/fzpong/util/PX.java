@@ -6,10 +6,10 @@ public class PX
 
     public static void set(int resolucao)
     {
-        if (resolucao == 320) {
-            size = new W320px();
-        } else {
+        if (resolucao >= 800) {
             size = new W800px();
+        } else {
+            size = new W320px();
         }
     }
 }

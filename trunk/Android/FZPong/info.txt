@@ -1,7 +1,8 @@
 Resolução
-480x800 -> Tablet / Celular
+480x800 -> Tablet / Celular (LG)
 240x320 -> Celular
-
+320X480 -> Celular (LG)
+854x480 -> Celular (Sony Ericsson)
 -------------
 
 Ação emulada 	Botão no teclado

@@ -43,6 +43,7 @@ public abstract class ControlThread extends Thread
     {
         this.width = width;
         this.height = height;
+        Log.i(getClass().getName(),"size:"+width+"x"+height);
     }
 
     protected void entryStateLoading()
@@ -182,13 +183,9 @@ public abstract class ControlThread extends Thread
                 Log.w("doStartThread", "state:" + thread.getState());
             }
             if (!isAlive()) {
-                Log.w("doStartThread", "isAlive:" + isAlive());
-                Log.w("doStartThread", "isInterrupted:" + isInterrupted());
-
                 thread = new Thread(this);
                 thread.start();
             }
-
         } catch (Exception e) {
             Log.w("doStartThread", e.getMessage());
         }
@@ -200,11 +197,8 @@ public abstract class ControlThread extends Thread
         try {
             Log.w("doStopThread", "state:" + thread.getState());
             if (!isAlive()) {
-                Log.w("doStopThread", "isAlive:" + isAlive());
-                Log.w("doStopThread", "isInterrupted:" + isInterrupted());
                 thread.interrupt();
             }
-
         } catch (Exception e) {
             Log.w("doStopThread", e.getMessage());
         }

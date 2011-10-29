@@ -40,7 +40,6 @@ public class FZPongActivity extends Activity
         } else {
             controle.restoreState(savedInstanceState);
         }
-
     }
 
     // A atividade está para se tornar visível
