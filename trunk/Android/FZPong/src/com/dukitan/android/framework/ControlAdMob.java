@@ -6,7 +6,7 @@ import android.view.SurfaceHolder;
 import android.view.View;
 
 
-public abstract class ControlAdMob extends ControlThread
+public abstract class ControlAdMob extends ControlState
 {
 
     private View adView;

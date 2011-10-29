@@ -47,96 +47,64 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
     public void surfaceCreated(SurfaceHolder holder)
     {
-        controle.setRunning(true);
-        controle.start();
-
-        Log.i(getClass().getName(), "isAlive:" + controle.isAlive());
-        Log.i(getClass().getName(), "isInterrupted:" + controle.isInterrupted());
-        Log.i(getClass().getName(), "isDaemon:" + controle.isDaemon());
+        Log.i(getClass().getName(), "surfaceCreated");          
+        controle.doStartThread();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus)
     {
+        Log.i(getClass().getName(), "onWindowFocusChanged");        
         if (!hasWindowFocus) {
             if (controle != null) {
                 controle.doPause();
                 controle.interrupt();
-
-                Log.i(getClass().getName(), "isAlive:" + controle.isAlive());
-                Log.i(getClass().getName(), "isInterrupted:" + controle.isInterrupted());
-                Log.i(getClass().getName(), "isDaemon:" + controle.isDaemon());
-
             }
-
         }
-
     }
 
     public void surfaceDestroyed(SurfaceHolder holder)
     {
-        boolean retry = true;
-        controle.setRunning(false);
-        while (retry) {
-            try {
-                controle.join();
-                retry = false;
-            } catch (InterruptedException e) {
-            }
-        }
+        Log.i(getClass().getName(), "surfaceDestroyed");
+        controle.doPauseThread();
     }
 
     public void onStart()
     {
-        boolean retry = true;
-        controle.setRunning(true);
-        while (retry) {
-            try {
-                controle.start();
-                retry = false;
-            } catch (Exception e) {
-                Log.i("onStart", e.getMessage());
-            }
-        }
+        Log.i(getClass().getName(), "onStart");      
+        //nada a fazer
     }
 
     public void onResume()
     {
-        boolean retry = true;
-        controle.setRunning(true);
-
-        while (retry) {
-            try {
-                controle.resume();
-                retry = false;
-            } catch (Exception e) {
-                Log.i("onResume", e.getMessage());
-            }
-        }
+        Log.i(getClass().getName(), "onResume");
+        controle.doResume();
+        controle.doStartThread();
     }
 
     public void onPause()
     {
-        boolean retry = true;
-        controle.setRunning(false);
-        while (retry) {
-            try {
-                controle.join();
-                retry = false;
-            } catch (InterruptedException e) {
+        Log.i(getClass().getName(), "onPause");
+        controle.doPause();
+        controle.doPauseThread();
+    }
 
-            }
-        }
+    public void onStop()
+    {
+        Log.i(getClass().getName(), "onStop");
+        controle.doStop();
+        controle.doPauseThread();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        return controle.doTouchEvent(event);
+        return controle.onTouchEvent(event);
     }
 
-    public Controle getThread()
+    public Controle getControl()
     {
+        Log.i(getClass().getName(), "getControl");
         return controle;
     }
 
