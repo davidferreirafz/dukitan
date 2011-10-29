@@ -1,20 +1,15 @@
 package com.dukitan.android.fzpong.entidade.raquete;
 
-import com.dukitan.android.fzpong.entidade.Bloqueavel;
-import com.dukitan.android.math.Vector2D;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import com.dukitan.android.fzpong.entidade.Bloqueavel;
+import com.dukitan.android.fzpong.util.PX;
+import com.dukitan.android.math.Vector2D;
+
 public abstract class Raquete extends Bloqueavel
 {
-
-    final public static int LADO_ESQUERDO = 0 + 28;
-    final public static int LADO_DIREITO  = 800 - 28;
-    final public static int CENTRO_VERTICAL= 40;
-    final public static int CENTRO_HORIZONTAL= 40;    
-
     public Raquete(Rect rect, Bitmap imagem, Vector2D vetor)
     {
         super(rect, imagem, vetor);
@@ -28,4 +23,25 @@ public abstract class Raquete extends Bloqueavel
         canvas.restore();
     }
 
+    protected int getCentroVertical()
+    {
+        return PX.size.RAQUETE_HEIGHT() / 2;
+    }
+
+    protected int getCentroHorizontal()
+    {
+        return PX.size.RAQUETE_WIDTH() / 2;
+    }
+
+    protected int getLadoEsquerdo()
+    {
+        return 0;
+    }
+
+    protected int getLadoDireito()
+    {
+        return PX.size.TELA_WIDTH() - PX.size.RAQUETE_WIDTH();
+    }
+
+    abstract public void setPosicao();
 }

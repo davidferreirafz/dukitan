@@ -45,4 +45,5 @@ public abstract class ControlAdMob extends ControlThread
     {
         adView.setVisibility(View.INVISIBLE);
     }
+
 }

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
@@ -23,57 +24,60 @@ import com.dukitan.android.math.Vector2D;
 public class Controle extends ControlAdMob
 {
 
-    final static private int SCREEN_WIDTH  = 800;
-    final static private int SCREEN_HEIGHT = 480;
+    private Bitmap          background;
+    private Bitmap          sprites;
+    private Input           input;
 
-    private Bitmap           background;
-    private Bitmap           sprites;
-    private Input            input;
-
-    private EntidadeManager  manager;
+    private EntidadeManager manager;
+    private Resources       res;
 
     public Controle(SurfaceHolder surfaceHolder, Context context, Handler handler)
     {
         super(surfaceHolder, context, handler);
 
+        res = context.getResources();
         input = new Input();
+
+    }
+
+    protected void entryStateLoading()
+    {
+        Log.i(getClass().getName(), "entryStateLoading");
+        background = BitmapFactory.decodeResource(res, R.drawable.background);
+        sprites = BitmapFactory.decodeResource(res, R.drawable.sprites);
+
         manager = EntidadeManager.getInstance();
         manager.clear();
 
-        Resources res = context.getResources();
+        Parede left = new Parede(new Rect(0, 0, 10, height), null, new Vector2D(1, 0));
+        left.setPosicao(0, 0);
+        manager.add(left);
 
-        background = BitmapFactory.decodeResource(res, R.drawable.background);
+        Parede right = new Parede(new Rect(0, 0, 10, height), null, new Vector2D(-1, 0));
+        right.setPosicao(width - 10, 0);
+        manager.add(right);
 
-        sprites = BitmapFactory.decodeResource(res, R.drawable.sprites);
+        Parede top = new Parede(new Rect(0, 0, width, 10), null, new Vector2D(0, 1));
+        top.setPosicao(0, 0);
+        manager.add(top);
 
-        Parede pL = new Parede(new Rect(0, 0, 10, 480), null, new Vector2D(1, 0));
-        pL.setPosicao(0, 0);
-        manager.add(pL);
-
-        Parede pR = new Parede(new Rect(0, 0, 10, 480), null, new Vector2D(-1, 0));
-        pR.setPosicao(790, 0);
-        manager.add(pR);
-
-        Parede pT = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, 1));
-        pT.setPosicao(0, 0);
-        manager.add(pT);
-
-        Parede pB = new Parede(new Rect(0, 0, 800, 10), null, new Vector2D(0, -1));
-        pB.setPosicao(0, 470);
-        manager.add(pB);
+        Parede bottom = new Parede(new Rect(0, 0, width, 10), null, new Vector2D(0, -1));
+        bottom.setPosicao(0, height - 10);
+        manager.add(bottom);
 
         Raquete raqueteCPU = new RaqueteCPU(sprites);
-        raqueteCPU.setPosicao(Raquete.LADO_ESQUERDO, SCREEN_HEIGHT / 2 - Raquete.CENTRO_VERTICAL);
+        raqueteCPU.setPosicao();
         manager.add(raqueteCPU);
 
         Raquete raqueteJogador = new RaqueteJogador(sprites);
-        raqueteJogador.setPosicao(Raquete.LADO_DIREITO, SCREEN_HEIGHT / 2 - Raquete.CENTRO_VERTICAL);
+        raqueteJogador.setPosicao();
         manager.add(raqueteJogador);
 
         Bola bola = new Bola(sprites);
-        bola.setPosicao(400, 240);
+        bola.setPosicao(width / 2, height / 2);
         manager.add(bola);
 
+        setState(Controle.STATE_READY);
     }
 
     protected void draw(Canvas canvas)
