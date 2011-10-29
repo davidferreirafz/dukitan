@@ -22,6 +22,9 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
+            android:clearTaskOnLaunch="true"
+            android:configChanges="orientation|screenLayout"
+            android:launchMode="standard"
             android:name="com.dukitan.android.framework.SplashScreen"
             android:screenOrientation="landscape" >
             <intent-filter >
@@ -33,7 +36,7 @@
         <activity
             android:configChanges="touchscreen|orientation|screenLayout"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
+            android:launchMode="standard"
             android:name=".FZPongActivity"
             android:screenOrientation="landscape" >
             <intent-filter >

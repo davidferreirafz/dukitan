@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public abstract class ControlThread extends Thread
     /*
      * State-tracking constants
      */
+    public static final int STATE_LOADING = 0;
     public static final int STATE_LOSE    = 1;
     public static final int STATE_PAUSE   = 2;
     public static final int STATE_READY   = 3;
@@ -39,6 +41,9 @@ public abstract class ControlThread extends Thread
     /** Pointer to the text view to display "Paused.." etc. */
     protected TextView      statusMessage;
 
+    protected int           width;
+    protected int           height;
+
     public ControlThread(SurfaceHolder surfaceHolder, Context context, Handler handler)
     {
         mSurfaceHolder = surfaceHolder;
@@ -50,6 +55,12 @@ public abstract class ControlThread extends Thread
     public void setTextView(TextView textView)
     {
         statusMessage = textView;
+    }
+
+    public void setViewSize(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
     }
 
     public void setState(int mode)
@@ -108,6 +119,15 @@ public abstract class ControlThread extends Thread
                     // str = res.getString(R.string.mode_win_prefix) +
                     // res.getString(R.string.mode_win_suffix);
                     entryStateWin();
+                } else if (mMode == STATE_LOADING) {
+                    Log.i(getClass().getName(), "setState:" + mMode);
+                    str = res.getText(R.string.mode_load);
+                    entryStateLoading();
+                    return;
+                    // retornando devido problema de mudança do texto para PAUSE
+                    // depois verificar com detalhes como mudar automaticamente
+                    // de
+                    // loading para ready
                 }
 
                 if (message != null) {
@@ -123,6 +143,11 @@ public abstract class ControlThread extends Thread
 
             }
         }
+    }
+
+    protected void entryStateLoading()
+    {
+
     }
 
     protected void entryStateWin()
@@ -143,6 +168,14 @@ public abstract class ControlThread extends Thread
 
     protected void entryStateRunning()
     {
+    }
+
+    public void doLoad()
+    {
+        synchronized (mSurfaceHolder) {
+            mLastTime = System.currentTimeMillis() + 100;
+            setState(STATE_LOADING);
+        }
     }
 
     public void doStart()
@@ -173,9 +206,9 @@ public abstract class ControlThread extends Thread
         // Move the real time clock up to now
         synchronized (mSurfaceHolder) {
             if (mMode == STATE_PAUSE) {
-                mLastTime = System.currentTimeMillis() + 100;                
-                setState(STATE_RUNNING);               
-            }            
+                mLastTime = System.currentTimeMillis() + 100;
+                setState(STATE_RUNNING);
+            }
 
         }
     }
@@ -222,10 +255,20 @@ public abstract class ControlThread extends Thread
             try {
                 c = mSurfaceHolder.lockCanvas(null);
                 synchronized (mSurfaceHolder) {
-                    if (mMode == STATE_RUNNING) {
-                        doUpdate();
+
+                    switch (mMode) {
+                        case STATE_LOADING:
+                            doLoad();
+                            break;
+
+                        case STATE_RUNNING:
+                            doUpdate();
+
+                        default:
+                            doDraw(c);
+                            break;
                     }
-                    doDraw(c);
+
                 }
             } finally {
                 // do this in a finally so that if an exception is thrown

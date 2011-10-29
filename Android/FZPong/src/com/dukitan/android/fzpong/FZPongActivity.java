@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,9 +33,9 @@ public class FZPongActivity extends Activity
         controle = view.getThread();
         controle.setAdView(findViewById(R.id.adView));
         controle.setTextView((TextView) findViewById(R.id.statusMessage));
-       
-        if (savedInstanceState == null) {
-            controle.setState(Controle.STATE_READY);
+
+        if (savedInstanceState == null) {            
+            //controle.setState(Controle.STATE_LOADING);
         } else {
             controle.restoreState(savedInstanceState);
         }
@@ -49,10 +50,7 @@ public class FZPongActivity extends Activity
     }
 
     /*
-     * A atividade se tornou visível (está em modo "resumed"). O sistema chama
-     * esse método como a primeira indicação que o usuário está deixando sua
-     * atividade (apesar disso não significar que a atividade está sendo
-     * destruída).
+     * A atividade se tornou visível (está em modo "resumed").
      */
     @Override
     protected void onResume()
@@ -65,6 +63,7 @@ public class FZPongActivity extends Activity
     protected void onPause()
     {
         super.onPause();
+        view.onPause();
         controle.doPause();
     }
 
@@ -73,6 +72,7 @@ public class FZPongActivity extends Activity
     protected void onStop()
     {
         super.onStop();
+        controle.doStop();
     }
 
     // A atividade está para ser destruída.
@@ -135,7 +135,7 @@ public class FZPongActivity extends Activity
         dialog.setContentView(layoutResID);
 
         dialog.setTitle(titleResID);
-        
+
         final Button ok = (Button) dialog.findViewById(R.id.button_ok);
 
         ok.setOnClickListener(new View.OnClickListener() {

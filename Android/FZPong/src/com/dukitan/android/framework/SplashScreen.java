@@ -16,6 +16,7 @@ public class SplashScreen extends Activity implements Runnable
     ProgressBar progressBar;
     int         contagem = 0;
     Handler     handler;
+    Thread      thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,8 +35,10 @@ public class SplashScreen extends Activity implements Runnable
                 progressBar.setProgress(contagem);
             }
         };
-        
-        new Thread(this).start();
+
+        thread = new Thread(this);
+
+        thread.start();
     }
 
     public void run()
@@ -48,7 +51,10 @@ public class SplashScreen extends Activity implements Runnable
             }
         }
         startActivity(new Intent(this, FZPongActivity.class));
+
+        thread.interrupt();
         finish();
+
     }
 
 }
