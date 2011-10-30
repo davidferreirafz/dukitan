@@ -2,6 +2,7 @@ package com.dukitan.android.fzpong.entidade;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.dukitan.android.framework.Input;
@@ -19,8 +20,9 @@ public abstract class Entidade
         sprite = new Sprite(size, imagem);
 
         this.size = size;
-        this.size.right = size.left + size.right;
-        this.size.bottom = size.top + size.bottom;
+        //this.size.right = size.left + size.right;
+        //this.size.bottom = size.top + size.bottom;
+        //comentado possivel problema com dimensao 
 
         posicao = new Vector2D(0, 0);
     }
@@ -57,6 +59,11 @@ public abstract class Entidade
     public void setPosicao(int x, int y)
     {
         posicao.set(x, y);
+    }
+
+    public Point getPosicao()
+    {
+        return new Point((int) posicao.getX(), (int) posicao.getY());
     }
 
     public abstract void draw(Canvas canvas);

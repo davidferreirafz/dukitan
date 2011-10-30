@@ -3,6 +3,8 @@ package com.dukitan.android.fzpong.util;
 public class W320px implements UnidadePixel
 {
 
+    static private final int TELA_TOP          = 5;
+    static private final int TELA_BOTTOM       = 235;
     static private final int TELA_WIDTH        = 320;
     static private final int TELA_HEIGHT       = 240;
 
@@ -12,11 +14,23 @@ public class W320px implements UnidadePixel
     static private final int RAQUETE_WIDTH     = 10;
     static private final int RAQUETE_HEIGHT    = 60;
 
-    static private final int RAQUETE_CPU_X     = 11;
+    static private final int RAQUETE_CPU_X     = 12;
     static private final int RAQUETE_CPU_Y     = 8;
 
     static private final int RAQUETE_JOGADOR_X = 0;
     static private final int RAQUETE_JOGADOR_Y = 8;
+
+    static private final int PAREDE            = 5;
+
+    public int TELA_TOP()
+    {
+        return TELA_TOP;
+    }
+
+    public int TELA_BOTTOM()
+    {
+        return TELA_BOTTOM;
+    }
 
     public int BOLA_WIDTH()
     {
@@ -66,6 +80,11 @@ public class W320px implements UnidadePixel
     public int TELA_HEIGHT()
     {
         return TELA_HEIGHT;
+    }
+
+    public int PAREDE()
+    {
+        return PAREDE;
     }
 
 }
