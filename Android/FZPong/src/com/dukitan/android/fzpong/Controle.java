@@ -19,6 +19,7 @@ import com.dukitan.android.fzpong.entidade.parede.Parede;
 import com.dukitan.android.fzpong.entidade.raquete.Raquete;
 import com.dukitan.android.fzpong.entidade.raquete.RaqueteCPU;
 import com.dukitan.android.fzpong.entidade.raquete.RaqueteJogador;
+import com.dukitan.android.fzpong.util.PX;
 import com.dukitan.android.math.Vector2D;
 
 public class Controle extends ControlAdMob
@@ -55,25 +56,29 @@ public class Controle extends ControlAdMob
         right.setPosicao(width - 10, 0);
         manager.add(right);
 
-        Parede top = new Parede(new Rect(0, 0, width, 10), null, new Vector2D(0, 1));
+        Parede top = new Parede(new Rect(0, 0, width, PX.size.PAREDE()), null, new Vector2D(0, 1));
         top.setPosicao(0, 0);
         manager.add(top);
 
-        Parede bottom = new Parede(new Rect(0, 0, width, 10), null, new Vector2D(0, -1));
-        bottom.setPosicao(0, height - 10);
+        Parede bottom = new Parede(new Rect(0, 0, width, PX.size.PAREDE()), null, new Vector2D(0, -1));
+        bottom.setPosicao(0, height - PX.size.PAREDE());
         manager.add(bottom);
 
         Raquete raqueteCPU = new RaqueteCPU(sprites);
-        raqueteCPU.setPosicao();
+        raqueteCPU.setLado(Raquete.LADO_ESQUERDO);
+        raqueteCPU.preparar();
         manager.add(raqueteCPU);
 
         Raquete raqueteJogador = new RaqueteJogador(sprites);
-        raqueteJogador.setPosicao();
+        raqueteJogador.setLado(Raquete.LADO_DIREITO);
+        raqueteJogador.preparar();
         manager.add(raqueteJogador);
 
         Bola bola = new Bola(sprites);
         bola.setPosicao(width / 2, height / 2);
         manager.add(bola);
+
+        Raquete.setBola(bola);
 
         setState(Controle.STATE_READY);
     }

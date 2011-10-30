@@ -2,6 +2,7 @@ package com.dukitan.android.framework;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.Rect;
 
 public class Sprite
@@ -37,6 +38,10 @@ public class Sprite
         clipCanvas.bottom = y + dimensao.bottom;
     }
 
+    public void draw(Point ponto, Canvas canvas){
+        draw(ponto.x, ponto.y, canvas);
+    }
+    
     public void draw(int x, int y, Canvas canvas)
     {
         canvas.save();

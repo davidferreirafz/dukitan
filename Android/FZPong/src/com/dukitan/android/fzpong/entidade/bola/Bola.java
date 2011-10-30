@@ -29,7 +29,8 @@ public class Bola extends Entidade
     public void draw(Canvas canvas)
     {
         canvas.save();
-        sprite.draw((int) posicao.getX(), (int) posicao.getY(), canvas);
+        //sprite.draw((int) posicao.getX(), (int) posicao.getY(), canvas);
+        sprite.draw(getPosicao(), canvas);
         canvas.restore();
     }
 
