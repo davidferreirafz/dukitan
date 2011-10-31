@@ -14,7 +14,7 @@ import com.dukitan.android.fzpong.util.PX;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
 
-    private Controle controle;
+    private Game controle;
 
     public GameView(Context context, AttributeSet attrs)
     {
@@ -24,7 +24,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         holder.addCallback(this);
 
         // create thread only; it's started in surfaceCreated()
-        controle = new Controle(holder, context, new Handler() {
+        controle = new Game(holder, context, new Handler() {
             @Override
             public void handleMessage(Message m)
             {
@@ -42,7 +42,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
         PX.set(width);
 
-        controle.setState(Controle.STATE_LOADING);
+        controle.setState(Game.STATE_LOADING);
     }
 
     public void surfaceCreated(SurfaceHolder holder)
@@ -102,7 +102,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         return controle.onTouchEvent(event);
     }
 
-    public Controle getControl()
+    public Game getControl()
     {
         Log.i(getClass().getName(), "getControl");
         return controle;

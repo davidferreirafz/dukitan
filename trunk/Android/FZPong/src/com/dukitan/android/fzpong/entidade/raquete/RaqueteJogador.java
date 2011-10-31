@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-import com.dukitan.android.framework.Converter;
 import com.dukitan.android.framework.Input;
+import com.dukitan.android.framework.Util;
 import com.dukitan.android.fzpong.util.PX;
 import com.dukitan.android.math.Vector2D;
 
@@ -58,8 +58,8 @@ public class RaqueteJogador extends Raquete
     {
         Point saque = getPosicao();
 
-        saque.x = saque.x - getVisaoBola().getSize().right;
-        saque.y = saque.y + Converter.random(getSize().bottom - getVisaoBola().getSize().bottom);
+        saque.x = saque.x - getVisaoBola().getSize().w();
+        saque.y = saque.y + Util.random(getSize().h() - getVisaoBola().getSize().h());
 
         return saque;
     }

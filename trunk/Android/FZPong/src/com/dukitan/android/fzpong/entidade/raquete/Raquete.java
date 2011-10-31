@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import com.dukitan.android.framework.Size;
 import com.dukitan.android.fzpong.entidade.Bloqueavel;
 import com.dukitan.android.fzpong.entidade.Entidade;
 import com.dukitan.android.fzpong.entidade.bola.Bola;
@@ -38,10 +39,10 @@ public abstract class Raquete extends Bloqueavel
     {
         // Se for do lado direito da tela
         if (lado == LADO_DIREITO) {
-            setPosicao(PX.size.TELA_WIDTH() - getSize().width(), (PX.size.TELA_HEIGHT() / 2) - (getSize().bottom / 2));
+            setPosicao(PX.size.TELA_WIDTH() - getSize().w(), (PX.size.TELA_HEIGHT() / 2) - (getSize().h() / 2));
             // Se for do lado esquerdo da tela
         } else {
-            setPosicao(0, (PX.size.TELA_HEIGHT() / 2) - (getSize().bottom / 2));
+            setPosicao(0, (PX.size.TELA_HEIGHT() / 2) - (getSize().h() / 2));
         }
     }
 
@@ -61,7 +62,7 @@ public abstract class Raquete extends Bloqueavel
     public void draw(Canvas canvas)
     {
         canvas.save();
-       // sprite.draw((int) posicao.getX(), (int) posicao.getY(), canvas);
+        // sprite.draw((int) posicao.getX(), (int) posicao.getY(), canvas);
         sprite.draw(getPosicao(), canvas);
         canvas.restore();
     }
@@ -99,7 +100,7 @@ public abstract class Raquete extends Bloqueavel
     protected void subir()
     {
         Point p = getPosicao();
-        
+
         p.y = p.y - getVelocidade();
 
         if (p.y <= PX.size.TELA_TOP()) {
@@ -112,11 +113,11 @@ public abstract class Raquete extends Bloqueavel
     protected void descer()
     {
         Point p = getPosicao();
-        
+
         p.y = p.y + getVelocidade();
 
-        if (p.y + getSize().bottom >= PX.size.TELA_BOTTOM()) {
-            p.y = PX.size.TELA_BOTTOM() - getSize().bottom;
+        if (p.y + getSize().h() >= PX.size.TELA_BOTTOM()) {
+            p.y = PX.size.TELA_BOTTOM() - getSize().h();
         }
 
         setPosicao(p.x, p.y);
@@ -129,7 +130,7 @@ public abstract class Raquete extends Bloqueavel
         Point p = getPosicao();
         p.y = p.y + getVelocidade();
 
-        if ((p.y + getSize().bottom >= PX.size.TELA_BOTTOM()) || (p.y <= PX.size.TELA_TOP())) {
+        if ((p.y + getSize().h() >= PX.size.TELA_BOTTOM()) || (p.y <= PX.size.TELA_TOP())) {
             bateu = true;
         }
 
@@ -140,28 +141,27 @@ public abstract class Raquete extends Bloqueavel
     {
         boolean retorno = false;
 
+        Point point = getPosicao();
+        Point perPoint = personagem.getPosicao();
+        Size size = getSize();
+        Size perSize = personagem.getSize();
+
         // Se raquete no lado direito da tela
-        /*
-          if (lado==LADO_DIREITO){ if ((point.x + getDimension().w >=
-          personagem->getPoint().x) && (point.x <= personagem->getPoint().x +
-          personagem->getDimension().w) && (point.y + getDimension().h >=
-          personagem->getPoint().y) && (point.y <= personagem->getPoint().y +
-          personagem->getDimension().h)){ 
-              retorno = true; }
-          }
-         */
-        // Se raquete no lado esquerdo da tela
-        /*
-         * } else { if ((point.x + getDimension().w >= personagem->getPoint().x)
-         * && (point.x <= personagem->getPoint().x +
-         * personagem->getDimension().w) && (point.y + getDimension().h >=
-         * personagem->getPoint().y) && (point.y <= personagem->getPoint().y +
-         * personagem->getDimension().h)){ retorno = true; } }
-         */
+        if (lado == LADO_DIREITO) {
+            if ((point.x + size.w() >= perPoint.x) && (point.x <= perPoint.x + perSize.w()) && (point.y + size.h() >= perPoint.y)
+                    && (point.y <= perPoint.y + perSize.h())) {
+                retorno = true;
+            }
+            // Se raquete no lado esquerdo da tela
+        } else {
+            if ((point.x + size.w() >= perPoint.x) && (point.x <= perPoint.x + perSize.w()) && (point.y + size.h() >= perPoint.y)
+                    && (point.y <= perPoint.y + perSize.h())) {
+                retorno = true;
+            }
+        }
 
         return retorno;
     }
-
 
     protected Bola getVisaoBola()
     {

@@ -5,15 +5,15 @@ import java.util.Random;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-public class Converter
+public class Util
 {
-    public static Rect converterArea(Rect dimensao, Point ponto)
+    public static Rect montarArea(Size size, Point ponto)
     {
         Rect area = new Rect();
         area.left = ponto.x;
         area.top = ponto.y;
-        area.right = dimensao.right;
-        area.bottom = dimensao.bottom;
+        area.right = size.w();
+        area.bottom = size.h();
 
         return area;
     }
