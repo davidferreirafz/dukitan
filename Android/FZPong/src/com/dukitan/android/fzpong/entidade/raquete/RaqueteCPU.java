@@ -7,8 +7,9 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-import com.dukitan.android.framework.Converter;
 import com.dukitan.android.framework.Input;
+import com.dukitan.android.framework.Size;
+import com.dukitan.android.framework.Util;
 import com.dukitan.android.fzpong.entidade.Entidade;
 import com.dukitan.android.fzpong.util.PX;
 import com.dukitan.android.math.Vector2D;
@@ -40,8 +41,9 @@ public class RaqueteCPU extends Raquete
     @Override
     public void update(Input input)
     {
-        Rect areaVisaoBola = Converter.converterArea(getVisaoBola().getSize(), getVisaoBola().getPosicao());
-        Rect visao = Converter.converterArea(getSize(), getPosicao());
+        Rect areaVisaoBola = Util.montarArea(getVisaoBola().getSize(), getVisaoBola().getPosicao());
+        Rect visao = Util.montarArea(getSize(), getPosicao());
+        visao.top = visao.top + (getSize().h() / 2);
 
         switch (pensar(visao, areaVisaoBola)) {
             case DECISAO_SUBIR:
@@ -61,8 +63,8 @@ public class RaqueteCPU extends Raquete
     {
         Point saque = getPosicao();
 
-        saque.x = saque.x + getSize().right;
-        saque.y = saque.y + Converter.random(getSize().bottom - getVisaoBola().getSize().bottom);
+        saque.x = saque.x + getSize().w();
+        saque.y = saque.y + Util.random(getSize().h() - getVisaoBola().getSize().h());
 
         return saque;
     }
@@ -124,7 +126,7 @@ public class RaqueteCPU extends Raquete
 
     public void iniciarVisao()
     {
-        raioVisao = (int) PX.size.TELA_WIDTH() / 3;
+        raioVisao = (int) PX.size.TELA_WIDTH() / 4;
     }
 
     public void aumentarVisao()
@@ -141,7 +143,7 @@ public class RaqueteCPU extends Raquete
         boolean retorno = super.isColisao(personagem);
 
         if (retorno) {
-            efeito = Converter.random(EFEITO_RANDOM);
+            efeito = Util.random(EFEITO_RANDOM);
         }
 
         return retorno;
@@ -151,16 +153,17 @@ public class RaqueteCPU extends Raquete
     public void draw(Canvas canvas)
     {
         Point p = getPosicao();
-        
+        Size s = getSize();
+
         paint.setColor(Color.GREEN);
-        canvas.drawCircle(p.x, p.y, raioVisao, paint);
+        canvas.drawCircle(p.x, p.y + (s.h() / 2), raioVisao, paint);
 
         paint.setColor(Color.RED);
-        canvas.drawCircle(p.x, p.y, (int) (size.height() * 1.2), paint);
+        canvas.drawCircle(p.x, p.y + (s.h() / 2), (int) (size.height() * 1.2), paint);
 
         paint.setColor(Color.WHITE);
-        canvas.drawText(p.x+"x"+p.y, p.x, p.y+20, paint);
-        
+        canvas.drawText(p.x + "x" + p.y, p.x, p.y + 20, paint);
+
         super.draw(canvas);
     }
 

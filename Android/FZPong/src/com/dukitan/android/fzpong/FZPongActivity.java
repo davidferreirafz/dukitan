@@ -16,7 +16,7 @@ public class FZPongActivity extends Activity
 {
     private GameView view;
 
-    private Controle controle;
+    private Game controle;
 
     /*
      * A atividade está sendo criada. O sistema chama esse método quando está

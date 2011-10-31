@@ -10,6 +10,10 @@ public interface UnidadePixel
 
     public int TELA_BOTTOM();
 
+    public int TELA_LEFT();
+
+    public int TELA_RIGHT();
+
     public int BOLA_WIDTH();
 
     public int BOLA_HEIGHT();

@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.dukitan.android.framework.Input;
+import com.dukitan.android.framework.Size;
 import com.dukitan.android.framework.Sprite;
 import com.dukitan.android.math.Vector2D;
 
@@ -14,17 +15,19 @@ public abstract class Entidade
     protected Sprite   sprite;
     protected Rect     size;
     protected Vector2D posicao;
+    private Size       nsize;
 
     public Entidade(Rect size, Bitmap imagem)
     {
         sprite = new Sprite(size, imagem);
 
         this.size = size;
-        //this.size.right = size.left + size.right;
-        //this.size.bottom = size.top + size.bottom;
-        //comentado possivel problema com dimensao 
+        // this.size.right = size.left + size.right;
+        // this.size.bottom = size.top + size.bottom;
+        // comentado possivel problema com dimensao
 
         posicao = new Vector2D(0, 0);
+        nsize = new Size(size.right, size.bottom);
     }
 
     /**
@@ -46,14 +49,28 @@ public abstract class Entidade
         return r;
     }
 
+    public Rect getRect()
+    {
+
+        Rect r = new Rect();
+
+        r.left = (int) posicao.getX();
+        r.top = (int) posicao.getY();
+
+        r.right = r.left + nsize.w();
+        r.bottom = r.top + nsize.h();
+
+        return r;
+    }
+
     /**
      * Retorna tamanho do objeto
      * 
      * @return
      */
-    public Rect getSize()
+    public Size getSize()
     {
-        return size;
+        return nsize;
     }
 
     public void setPosicao(int x, int y)
