@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/ScreenSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView1"
+        android:editable="false"
+        android:text="@string/app_name" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ScreenSize"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/ScreenSize"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/ScreenDPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ScreenSize"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ScreenSize"
+        android:editable="false"
+        android:text="@string/app_name" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ScreenDPI"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:text="@string/ScreenDensityDPI"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/ScreenDensity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ScreenDPI"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ScreenDPI"
+        android:editable="false"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ScreenDensity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/ScreenDensity"
+        android:text="@string/ScreenDensity"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/Country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ScreenDensity"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ScreenDensity"
+        android:editable="false"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Country"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Country"
+        android:text="@string/Country"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/Language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Country"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/Country"
+        android:editable="false"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Language"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView4"
+        android:text="@string/Language"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/Product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Language"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/Language"
+        android:editable="false"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Product"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Product"
+        android:text="@string/Product"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/OsVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Product"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/Product"
+        android:editable="false"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/OsVersion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/OsVersion"
+        android:text="@string/OsVersion"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
