@@ -16,5 +16,8 @@
     <string name="dialogCreditTitle">Credit</string>
     <string name="menu_about">About</string>
     <string name="menu_credit">Credit</string>    
+    <string name="dialogPublish">Publish. Please wait...</string>
+    <string name="dialogError">There was an error, was not published</string>
+    <string name="dialogSuccess">Success, was published</string>  
 </resources>
 

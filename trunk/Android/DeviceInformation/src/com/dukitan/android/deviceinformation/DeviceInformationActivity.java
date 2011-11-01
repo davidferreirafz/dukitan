@@ -14,7 +14,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -35,7 +37,7 @@ public class DeviceInformationActivity extends Activity
     private TextView language;
     private TextView osVersion;
     private TextView product;
-    HttpResponse response;
+    HttpResponse     response;
 
     /** Called when the activity is first created. */
     @Override
@@ -86,6 +88,8 @@ public class DeviceInformationActivity extends Activity
     protected void publicar()
     {
 
+        ProgressDialog dialog = ProgressDialog.show(this, "", "Publish. Please wait...", true);
+
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://deviceinformation.dukitan.com/coleta.php");
 
@@ -105,14 +109,32 @@ public class DeviceInformationActivity extends Activity
             // Execute HTTP Post Request
             response = httpclient.execute(httppost);
 
-            Log.i("POST", response.getStatusLine().getStatusCode()+"");
-            // response.getStatusLine().getReasonPhrase()
         } catch (ClientProtocolException e) {
             Log.e(getLocalClassName(), e.getMessage());
         } catch (IOException e) {
-            Log.e(getLocalClassName(), e.getMessage());            
+            Log.e(getLocalClassName(), e.getMessage());
         }
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
+
+        dialog.dismiss();
+
+        if (response.getStatusLine().getStatusCode() != 200) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.dialogError);
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.dialogSuccess);
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
