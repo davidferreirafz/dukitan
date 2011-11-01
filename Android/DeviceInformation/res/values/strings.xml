@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Device Information</string>
+    <string name="ScreenSize">Screen Size</string>
+    <string name="ScreenDensity">Density</string>
+    <string name="ScreenDensityDPI">DPI</string>
+    <string name="PublishInformation">Publish Information in:\ndeviceinformation.dukitan.com</string>
+    <string name="OsVersion">OS version</string>
+    <string name="Country">Country</string>
+    <string name="Language">Language</string>
+    <string name="Product">Product</string>    
+    <string name="dialogAboutText">This software has two objectives:\n\n 1. Allow you to discover the features of your device;\n\n 2. Allow you to share data with developers to produce applications \nthat can compatible with more devices;</string>
+    <string name="dialogCreditText">Developer\nDavid de Almeida Ferreira (FZ)\n\nE-Mail\ndavidferreira.fz@gmail.com\n\nSite\nhttp://software.dukitan.com</string>
+    <string name="button_ok">Ok</string>
+    <string name="dialogAboutTitle">About</string>
+    <string name="dialogCreditTitle">Credit</string>
+    <string name="menu_about">About</string>
+    <string name="menu_credit">Credit</string>    
+</resources>
+
