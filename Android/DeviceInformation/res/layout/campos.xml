@@ -21,6 +21,7 @@
         android:layout_alignBottom="@+id/ScreenSize"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:minWidth="100dp"
         android:text="@string/ScreenSize"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -44,6 +45,7 @@
         android:layout_alignBottom="@+id/ScreenDPI"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
+        android:layout_toLeftOf="@+id/ScreenDPI"
         android:text="@string/ScreenDensityDPI"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -64,6 +66,7 @@
         android:layout_alignBottom="@+id/ScreenDensity"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/ScreenDensity"
+        android:layout_toLeftOf="@+id/ScreenDensity"
         android:text="@string/ScreenDensity"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -84,6 +87,7 @@
         android:layout_alignBottom="@+id/Country"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/Country"
+        android:layout_toLeftOf="@+id/Country"
         android:text="@string/Country"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -104,6 +108,7 @@
         android:layout_alignBottom="@+id/Language"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView4"
+        android:layout_toLeftOf="@+id/Language"
         android:text="@string/Language"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -124,6 +129,7 @@
         android:layout_alignBottom="@+id/Product"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/Product"
+        android:layout_toLeftOf="@+id/Product"
         android:text="@string/Product"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -144,6 +150,7 @@
         android:layout_alignBottom="@+id/OsVersion"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/OsVersion"
+        android:layout_toLeftOf="@+id/OsVersion"
         android:text="@string/OsVersion"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
