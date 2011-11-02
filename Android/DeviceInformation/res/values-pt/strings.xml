@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Device Information</string>
+    <string name="ScreenSize">Tela</string>
+    <string name="ScreenDensity">Densidade</string>
+    <string name="ScreenDensityDPI">DPI</string>
+    <string name="PublishInformation">Publicar Informações em:\ndeviceinformation.dukitan.com</string>
+    <string name="OsVersion">SO versão</string>
+    <string name="Country">País</string>
+    <string name="Language">Idioma</string>
+    <string name="Product">Produto</string>    
+    <string name="dialogAboutText">Este software tem duas finalidades:\n\n 1. Permitir que você descubra as características do seu aparelho;\n\n 2. Permitir que você compartilhe estes dados com desenvolvedores de aplicativos, melhorando a compatibilidade dos softwares;\n\n Visite:\ndeviceinformation.dukitan.com</string>
+    <string name="dialogCreditText">Desenvolvedor\nDavid de Almeida Ferreira (FZ)\n\nE-Mail\ndavidferreira.fz@gmail.com\n\nSite\nhttp://software.dukitan.com</string>
+    <string name="button_ok">Ok</string>
+    <string name="dialogAboutTitle">Sobre</string>
+    <string name="dialogCreditTitle">Crédito</string>
+    <string name="menu_about">Sobre</string>
+    <string name="menu_credit">Crédito</string>    
+    <string name="dialogPublish">Publicando. Espere...</string>
+    <string name="dialogError">Ocorreu um erro, dados não publicados</string>
+    <string name="dialogSuccess">Sucesso, dados publicados</string>      
+</resources>
