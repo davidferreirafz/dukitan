@@ -16,11 +16,9 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -74,12 +72,11 @@ public class DeviceInformationActivity extends Activity
 
         Configuration c = getApplicationContext().getResources().getConfiguration();
 
-        country.setText(c.locale.getDisplayCountry());
-        language.setText(c.locale.getDisplayLanguage());
+        country.setText(c.locale.getDisplayCountry() + ";" + c.locale.getISO3Country());
+        language.setText(c.locale.getDisplayLanguage() + ";" + c.locale.getISO3Language());
         osVersion.setText(android.os.Build.VERSION.SDK + ";" + android.os.Build.VERSION.CODENAME + ";" + android.os.Build.VERSION.RELEASE);
-
-        product.setText(android.os.Build.MANUFACTURER + ";" + android.os.Build.MODEL + ";" + android.os.Build.BOARD);
-
+        product.setText(android.os.Build.MANUFACTURER + ";" + android.os.Build.MODEL + ";" + android.os.Build.BOARD + ";" + android.os.Build.PRODUCT
+                + ";" + android.os.Build.ID);
         screenSize.setText(metrics.widthPixels + "x" + metrics.heightPixels);
         screenDensity.setText(metrics.density + "");
         screenDensityDPI.setText(metrics.densityDpi + "");
@@ -87,9 +84,6 @@ public class DeviceInformationActivity extends Activity
 
     protected void publicar()
     {
-
-        ProgressDialog dialog = ProgressDialog.show(this, "", "Publish. Please wait...", true);
-
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://deviceinformation.dukitan.com/coleta.php");
 
@@ -106,21 +100,11 @@ public class DeviceInformationActivity extends Activity
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-            // Execute HTTP Post Request
             response = httpclient.execute(httppost);
 
         } catch (ClientProtocolException e) {
-            Log.e(getLocalClassName(), e.getMessage());
         } catch (IOException e) {
-            Log.e(getLocalClassName(), e.getMessage());
         }
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
-        dialog.dismiss();
 
         if (response.getStatusLine().getStatusCode() != 200) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -163,7 +147,6 @@ public class DeviceInformationActivity extends Activity
 
     private void showCustomDialog(int layoutResID, int titleResID)
     {
-
         final Dialog dialog = new Dialog(this);
 
         dialog.setContentView(layoutResID);
