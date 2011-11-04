@@ -16,6 +16,7 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -36,6 +37,7 @@ public class DeviceInformationActivity extends Activity
     private TextView osVersion;
     private TextView product;
     HttpResponse     response;
+    private long     DI_UID = 0;
 
     /** Called when the activity is first created. */
     @Override
@@ -63,6 +65,7 @@ public class DeviceInformationActivity extends Activity
             }
         });
 
+        createID();
     }
 
     protected void info()
@@ -106,7 +109,7 @@ public class DeviceInformationActivity extends Activity
         } catch (IOException e) {
         }
 
-        if (response.getStatusLine().getStatusCode() != 200) {
+        if ((response == null) || (response.getStatusLine().getStatusCode() != 200)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.dialogError);
 
@@ -163,5 +166,26 @@ public class DeviceInformationActivity extends Activity
         });
 
         dialog.show();
+    }
+
+    private void createID()
+    {
+        final String PREFS_NAME = "DeviceInformationFile";
+
+        // Restore preferences
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        DI_UID = settings.getLong("DI_UID", 0);
+
+        if (DI_UID == 0) {
+
+            //DI_UID=
+            
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putLong("DI_UID", DI_UID);
+
+            // Commit the edits!
+            editor.commit();
+        }
+
     }
 }
