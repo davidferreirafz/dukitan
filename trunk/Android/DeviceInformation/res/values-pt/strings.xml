@@ -9,7 +9,7 @@
     <string name="Country">País</string>
     <string name="Language">Idioma</string>
     <string name="Product">Produto</string>    
-    <string name="dialogAboutText">Este software tem duas finalidades:\n\n 1. Permitir que você descubra as características do seu aparelho;\n\n 2. Permitir que você compartilhe estes dados com desenvolvedores de aplicativos, melhorando a compatibilidade dos softwares;\n\n Visite:\ndeviceinformation.dukitan.com</string>
+    <string name="dialogAboutText">Este software tem duas finalidades:\n 1. Permitir que você descubra as características do seu aparelho;\n 2. Permitir que você compartilhe estes dados com desenvolvedores de aplicativos, melhorando a compatibilidade dos softwares;\n\n Visite:\ndeviceinformation.dukitan.com</string>
     <string name="dialogCreditText">Desenvolvedor\nDavid de Almeida Ferreira (FZ)\n\nE-Mail\ndavidferreira.fz@gmail.com\n\nSite\nhttp://software.dukitan.com</string>
     <string name="button_ok">Ok</string>
     <string name="dialogAboutTitle">Sobre</string>

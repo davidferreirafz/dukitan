@@ -2,6 +2,7 @@ package com.dukitan.android.deviceinformation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -13,21 +14,18 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class DeviceInformationActivity extends Activity
+import com.dukitan.android.framework.Application;
+
+public class DeviceInformationActivity extends Application
 {
     private TextView screenSize;
     private TextView screenDensity;
@@ -37,7 +35,7 @@ public class DeviceInformationActivity extends Activity
     private TextView osVersion;
     private TextView product;
     HttpResponse     response;
-    private long     DI_UID = 0;
+    private String   DI_UID = "";
 
     /** Called when the activity is first created. */
     @Override
@@ -65,7 +63,7 @@ public class DeviceInformationActivity extends Activity
             }
         });
 
-        createID();
+        createUID();
     }
 
     protected void info()
@@ -100,6 +98,7 @@ public class DeviceInformationActivity extends Activity
             nameValuePairs.add(new BasicNameValuePair("language", language.getText().toString()));
             nameValuePairs.add(new BasicNameValuePair("product", product.getText().toString()));
             nameValuePairs.add(new BasicNameValuePair("osVersion", osVersion.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("DI_UID", DI_UID));
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -124,64 +123,26 @@ public class DeviceInformationActivity extends Activity
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId()) {
-
-            case R.id.menu_about:
-                showCustomDialog(R.layout.about, R.string.dialogAboutTitle);
-                return true;
-
-            case R.id.menu_credit:
-                showCustomDialog(R.layout.credit, R.string.dialogCreditTitle);
-                return true;
-        }
-
-        return false;
-    }
-
-    private void showCustomDialog(int layoutResID, int titleResID)
-    {
-        final Dialog dialog = new Dialog(this);
-
-        dialog.setContentView(layoutResID);
-
-        dialog.setTitle(titleResID);
-
-        final Button ok = (Button) dialog.findViewById(R.id.button_ok);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
-
-    private void createID()
+    private void createUID()
     {
         final String PREFS_NAME = "DeviceInformationFile";
 
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        DI_UID = settings.getLong("DI_UID", 0);
+        DI_UID = settings.getString("DI_UID", "");
 
-        if (DI_UID == 0) {
+        if ((DI_UID == null) || ("".equals(DI_UID))) {
 
-            //DI_UID=
-            
+            Calendar cal = Calendar.getInstance();
+            StringBuffer uid = new StringBuffer();
+            uid.append(cal.get(Calendar.YEAR));
+            uid.append(cal.get(Calendar.MONTH));
+            uid.append(cal.get(Calendar.DAY_OF_MONTH));
+            uid.append(cal.getTimeInMillis());
+            DI_UID = uid.toString();
+
             SharedPreferences.Editor editor = settings.edit();
-            editor.putLong("DI_UID", DI_UID);
+            editor.putString("DI_UID", DI_UID);
 
             // Commit the edits!
             editor.commit();

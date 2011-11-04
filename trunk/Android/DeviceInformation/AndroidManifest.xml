@@ -10,8 +10,11 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:label="@string/app_name"
-            android:name=".DeviceInformationActivity" android:configChanges="keyboard|orientation|screenLayout" android:screenOrientation="portrait">
+            android:clearTaskOnLaunch="true"
+            android:configChanges="orientation|screenLayout"
+            android:launchMode="standard"
+            android:name="com.dukitan.android.framework.SplashScreen"
+            android:screenOrientation="portrait" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +22,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:configChanges="keyboard|orientation|screenLayout"
+            android:label="@string/app_name"
+            android:name=".DeviceInformationActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"
             android:name="com.google.ads.AdActivity"
-            android:screenOrientation="portrait" />        
+            android:screenOrientation="portrait" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />   
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 </manifest>

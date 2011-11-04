@@ -9,7 +9,7 @@
     <string name="Country">Country</string>
     <string name="Language">Language</string>
     <string name="Product">Product</string>    
-    <string name="dialogAboutText">This software has two objectives:\n\n 1. Allow you to discover the features of your device;\n\n 2. Allow you to share data with developers to \nproduce applications that can compatible with more devices;\n\n Visit:\ndeviceinformation.dukitan.com</string>
+    <string name="dialogAboutText">This software has two objectives:\n 1. Allow you to discover the features of your device;\n 2. Allow you to share data with developers to produce applications that can compatible with more devices;\n\n Visit:\ndeviceinformation.dukitan.com</string>
     <string name="dialogCreditText">Developer\nDavid de Almeida Ferreira (FZ)\n\nE-Mail\ndavidferreira.fz@gmail.com\n\nSite\nhttp://software.dukitan.com</string>
     <string name="button_ok">Ok</string>
     <string name="dialogAboutTitle">About</string>
