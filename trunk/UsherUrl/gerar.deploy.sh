@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export VERSAO=1.5
+export VERSAO=1.6
 export PACKAGE_NAME="DukItanUsherUrl".$VERSAO."xpi"
 
 export RAIZ=/home/desenvolvimento/dukitan
