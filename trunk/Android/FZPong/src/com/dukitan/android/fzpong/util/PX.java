@@ -8,6 +8,8 @@ public class PX
     {
         if (resolucao >= 800) {
             size = new W800px();
+        } else if (resolucao == 480) {
+            size = new W480px();
         } else {
             size = new W320px();
         }

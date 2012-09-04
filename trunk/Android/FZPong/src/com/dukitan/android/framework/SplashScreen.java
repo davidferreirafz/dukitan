@@ -22,7 +22,7 @@ public class SplashScreen extends Activity implements Runnable
     Handler          handler;
     Thread           thread;
 
-    String           compativel[] = { "320x240", "800x480" };
+    String           compativel[] = { "320x240", "800x480", "480x320" };
     private TextView deviceAlert;
 
     @Override
