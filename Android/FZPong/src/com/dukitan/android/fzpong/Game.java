@@ -82,8 +82,8 @@ public class Game extends ControlAdMob
         raqueteCPU.preparar();
         manager.add(raqueteCPU);
 
-        //Raquete raqueteJogador = new RaqueteJogador(sprites);
-        Raquete raqueteJogador = new RaqueteCPU(sprites);
+        Raquete raqueteJogador = new RaqueteJogador(sprites);
+        //Raquete raqueteJogador = new RaqueteCPU(sprites);
         raqueteJogador.setLado(Raquete.LADO_DIREITO);
         raqueteJogador.preparar();
         manager.add(raqueteJogador);
